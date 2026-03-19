@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.7 NU_07 Informes</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #172B4D;
+            margin-top: 1.5em;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .metadata {
+            background: #f4f5f7;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="metadata">
+        <strong>Página:</strong> 3.7 NU_07 Informes<br>
+        <strong>ID:</strong> 1384808482<br>
+        <strong>Espacio:</strong> Y<br>
+        <strong>Versión:</strong> 1<br>
+        <strong>Última modificación:</strong> 2025-09-25T17:00:44.768Z
+    </div>
+    <hr>
+    <p>El modulo de informes constar&aacute; de una pantalla en la cual existir&aacute; una pantalla con filtro y detalle de listado de informes.</p><p>En la opci&oacute;n de filtro de informes, se podr&aacute; filtrar por:</p><ul><li><p>Tipo de informe: diario / semanal</p></li><li><p>Rango de fechas: desde / hasta</p></li></ul><p>El listado contendr&aacute;:</p><ul><li><p>Nombre del informe</p></li><li><p>Tipo de informe</p></li><li><p>Fecha de creaci&oacute;n.</p></li></ul><h3>3.7.1 Informe diario</h3><p>El informe se generar&aacute; por el sistema y contendr&aacute; las estad&iacute;sticas de informaci&oacute;n procesada por el sistema en el d&iacute;a anterior.</p><ul><li><p>CUPS de Zeus</p></li><li><p>Notificaciones a clieintes</p></li><li><p>Lecturas enviadas a Backend (Zeus) tanto manual como autom&aacute;ticas.</p></li><li><p>Recepci&oacute;n de lecturas desde las Apps.</p></li></ul><p>El informe de salud de la plataforma se revisar&aacute; por el equipo de cluster en base a las alertas que se generen y se enviar&aacute; diariamente.</p><h3>3.7.2 Informe semanal</h3><p>El informe se generar&aacute; por el sistema y contendr&aacute; las estad&iacute;sticas de informaci&oacute;n procesada por el sistema en la semana anterior:</p><p>Contendr&aacute; la siguiente informaci&oacute;n:</p><h4><strong>Lecturas Recibidas por Canal de Entrada</strong></h4><h5><strong>2.1 Canal HERMES (Sistema Autom&aacute;tico)</strong></h5><ul><li><p>2.1.1 Lecturas validadas autom&aacute;ticamente</p></li><li><p>2.1.2 Lecturas validadas manualmente</p></li><li><p>2.1.3 Lecturas rechazadas manualmente</p></li><li><p>2.1.4 Pendientes de validaci&oacute;n manual (con OCR OK - reencoladas ZEUS)</p></li><li><p>2.1.5 Pendientes de validaci&oacute;n manual (con OCR KO)</p></li><li><p>2.1.6 Pendientes de proceso OCR</p></li><li><p>2.1.7 Pendientes de proceso de env&iacute;o</p></li></ul><h5><strong>2.2 Canal MOBILEPROFILE (Primera Foto M&oacute;vil)</strong></h5><ul><li><p>2.2.1 Aceptadas autom&aacute;ticamente (FOTO-1)</p></li><li><p>2.2.2 Aceptadas por Back Office - No introducidas a mano</p></li><li><p>2.2.3 Aceptadas por Back Office - Introducidas a mano</p></li><li><p>2.2.4 Descartadas por Back Office (FOTO-1)</p></li><li><p>2.2.5 Descartadas autom&aacute;ticamente (FOTO-1)</p></li><li><p>2.2.6 Pendientes de validaci&oacute;n manual (con OCR OK - reencoladas ZEUS)</p></li><li><p>2.2.7 Pendientes de validaci&oacute;n manual (con OCR KO)</p></li><li><p>2.2.8 Pendientes de proceso OCR</p></li><li><p>2.2.9 Pendientes de proceso de env&iacute;o</p></li><li><p>2.2.10 Descartadas por fotos duplicadas</p></li></ul><h5><strong>2.3 Canal MOBILE (Fotos Siguientes M&oacute;vil)</strong></h5><ul><li><p>2.3.1 Aceptadas autom&aacute;ticamente (FOTO-SIGUIENTES)</p></li><li><p>2.3.2 Aceptadas por Back Office - No introducidas a mano</p></li><li><p>2.3.3 Aceptadas por Back Office - Introducidas a mano</p></li><li><p>2.3.4 Descartadas por Back Office (FOTO-SIGUIENTES)</p></li><li><p>2.3.5 Descartadas autom&aacute;ticamente (FOTO-SIGUIENTES)</p></li><li><p>2.3.6 Pendientes de validaci&oacute;n manual (con OCR OK - reencoladas ZEUS)</p></li><li><p>2.3.7 Pendientes de validaci&oacute;n manual (con OCR KO)</p></li><li><p>2.3.8 Pendientes de proceso OCR</p></li><li><p>2.3.9 Pendientes de proceso de env&iacute;o</p></li></ul><h4><strong>3. Lecturas Enviadas al Sistema de Distribuci&oacute;n</strong></h4><ul><li><p>3.1 Aceptadas por el sistema distribuci&oacute;n</p></li><li><p>3.2 Rechazadas por el sistema distribuci&oacute;n</p></li><li><p>3.3 Total enviadas al sistema distribuci&oacute;n</p></li><li><p>3.4 Total no enviadas a Zeus por existir perfil cliente (espec&iacute;fico HERMES)</p></li><li><p>3.5 Validadas por exceso de consumo (espec&iacute;fico MOBILE)</p></li><li><p>3.6 Pendientes de entregar a ZEUS por ESB Error</p></li></ul><h4><strong>4. An&aacute;lisis de Rechazos</strong></h4><h5><strong>4.1 Motivos de Rechazo por OCR</strong></h5><ul><li><p>4.1.1 Total rechazadas OCR</p></li><li><p>4.1.2 Falta confianza en algunos d&iacute;gitos</p></li><li><p>4.1.3 No se ha detectado ning&uacute;n d&iacute;gito</p></li><li><p>4.1.4 Imposible calcular Homograf&iacute;a</p></li></ul><h5><strong>4.2 Motivos de Rechazo por Sistema Comercial (Zeus/SGC)</strong></h5><ul><li><p>4.2.1 Total rechazadas Zeus</p></li><li><p>4.2.2 Cliente no est&aacute; Activo</p></li><li><p>4.2.3 Consumo supera el m&aacute;ximo permitido</p></li><li><p>4.2.4 Contador no existe / CUPS no existe</p></li><li><p>4.2.5 Contador no coincide</p></li><li><p>4.2.6 CUPS no Activo</p></li></ul><h4><strong>5. Gesti&oacute;n de Notificaciones (Espec&iacute;fico Canal MOBILE)</strong></h4><ul><li><p>5.1 CUPS de clientes registrados</p></li><li><p>5.2 Notificaciones &quot;aviso pr&oacute;xima lectura&quot; enviadas</p></li><li><p>5.3 Notificaciones &quot;aviso pr&oacute;xima lectura&quot; enviadas con &eacute;xito</p></li></ul>
+</body>
+</html>

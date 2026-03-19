@@ -1,0 +1,462 @@
+{
+  "space_key": "Y",
+  "total_pages": 57,
+  "pages": [
+    {
+      "id": "1356333186",
+      "title": "Nedgia - YoLeoGas",
+      "type": "page",
+      "version": 6,
+      "last_modified": "2025-09-15T09:29:11.209Z",
+      "path": "Nedgia - YoLeoGas"
+    },
+    {
+      "id": "1371602946",
+      "title": "🏗️ Análisis de Arquitectura - YoLeoGas",
+      "type": "page",
+      "version": 1,
+      "last_modified": "2025-09-18T09:13:36.692Z",
+      "path": "Nedgia - YoLeoGas/Documentación Técnica/General/🏗️ Análisis de Arquitectura - YoLeoGas"
+    },
+    {
+      "id": "1371799559",
+      "title": "🧪 Plan de Pruebas – YoLeoGas APP",
+      "type": "page",
+      "version": 6,
+      "last_modified": "2025-11-17T13:59:47.139Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF App Mobile/🧪 Plan de Pruebas – YoLeoGas APP"
+    },
+    {
+      "id": "1383137281",
+      "title": "DF Procesos Backend",
+      "type": "page",
+      "version": 8,
+      "last_modified": "2025-10-14T18:29:31.416Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF Procesos Backend/DF Procesos Backend"
+    },
+    {
+      "id": "1384251440",
+      "title": "3. [Back] Descripción funcional detallada",
+      "type": "page",
+      "version": 9,
+      "last_modified": "2025-10-22T17:45:33.731Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF Web BackOffice/DF Web BackOffice YoLeoGas/3. [Back] Descripción funcional detallada"
+    },
+    {
+      "id": "1384317021",
+      "title": "3.4 NU_04 - Validación de perfiles",
+      "type": "page",
+      "version": 1,
+      "last_modified": "2025-09-25T16:57:12.323Z",
+      "path": "3.4 NU_04 - Validación de perfiles"
+    },
+    {
+      "id": "1384317030",
+      "title": "3.5 NU_05 - Lecturas",
+      "type": "page",
+      "version": 1,
+      "last_modified": "2025-09-25T16:57:59.730Z",
+      "path": "3.5 NU_05 - Lecturas"
+    },
+    {
+      "id": "1384546319",
+      "title": "3.2 NU_02 - Menú de la aplicación",
+      "type": "page",
+      "version": 1,
+      "last_modified": "2025-09-25T16:51:49.302Z",
+      "path": "3.2 NU_02 - Menú de la aplicación"
+    },
+    {
+      "id": "1384546328",
+      "title": "3.3 NU_03 - Validación de lecturas / imágenes",
+      "type": "page",
+      "version": 1,
+      "last_modified": "2025-09-25T16:55:43.054Z",
+      "path": "3.3 NU_03 - Validación de lecturas _ imágenes"
+    },
+    {
+      "id": "1384546344",
+      "title": "4. Modelo conceptual de datos",
+      "type": "page",
+      "version": 1,
+      "last_modified": "2025-09-25T17:15:15.509Z",
+      "path": "4. Modelo conceptual de datos"
+    },
+    {
+      "id": "1384808467",
+      "title": "1. [Back] Introducción",
+      "type": "page",
+      "version": 6,
+      "last_modified": "2025-10-21T10:26:08.792Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF Web BackOffice/DF Web BackOffice YoLeoGas/1. [Back] Introducción"
+    },
+    {
+      "id": "1384808482",
+      "title": "3.7 NU_07 Informes",
+      "type": "page",
+      "version": 1,
+      "last_modified": "2025-09-25T17:00:44.768Z",
+      "path": "3.7 NU_07 Informes"
+    },
+    {
+      "id": "1384939532",
+      "title": "2. Mapa de integración",
+      "type": "page",
+      "version": 1,
+      "last_modified": "2025-09-25T16:38:26.544Z",
+      "path": "2. Mapa de integración"
+    },
+    {
+      "id": "1385037842",
+      "title": "3.6 NU_06 - Perfiles",
+      "type": "page",
+      "version": 1,
+      "last_modified": "2025-09-25T16:58:50.588Z",
+      "path": "3.6 NU_06 - Perfiles"
+    },
+    {
+      "id": "1385037852",
+      "title": "3.8 NU_08 - Configuración de la distribuidora",
+      "type": "page",
+      "version": 1,
+      "last_modified": "2025-09-25T17:01:39.630Z",
+      "path": "3.8 NU_08 - Configuración de la distribuidora"
+    },
+    {
+      "id": "1385037861",
+      "title": "3.9 NU_09 - Configuración global",
+      "type": "page",
+      "version": 1,
+      "last_modified": "2025-09-25T17:02:25.845Z",
+      "path": "3.9 NU_09 - Configuración global"
+    },
+    {
+      "id": "1385037874",
+      "title": "5. Procesos principales",
+      "type": "page",
+      "version": 1,
+      "last_modified": "2025-09-25T17:17:38.457Z",
+      "path": "5. Procesos principales"
+    },
+    {
+      "id": "1385201665",
+      "title": "DF Web BackOffice YoLeoGas",
+      "type": "page",
+      "version": 8,
+      "last_modified": "2025-10-17T06:53:17.135Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF Web BackOffice/DF Web BackOffice YoLeoGas"
+    },
+    {
+      "id": "1388249090",
+      "title": "DF App YoLeoGas",
+      "type": "page",
+      "version": 6,
+      "last_modified": "2025-10-22T07:19:07.321Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF App Mobile/DF App YoLeoGas"
+    },
+    {
+      "id": "1388707864",
+      "title": "1. [App] Introducción",
+      "type": "page",
+      "version": 4,
+      "last_modified": "2025-10-20T15:13:26.961Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF App Mobile/DF App YoLeoGas/1. [App] Introducción"
+    },
+    {
+      "id": "1388806146",
+      "title": "2. [App] Descripción conceptual",
+      "type": "page",
+      "version": 18,
+      "last_modified": "2025-10-22T10:47:36.532Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF App Mobile/DF App YoLeoGas/2. [App] Descripción conceptual"
+    },
+    {
+      "id": "1390379020",
+      "title": "3. [App] Descripción funcional detallada",
+      "type": "page",
+      "version": 5,
+      "last_modified": "2025-10-22T07:19:50.664Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF App Mobile/DF App YoLeoGas/3. [App] Descripción funcional detallada"
+    },
+    {
+      "id": "1409646594",
+      "title": "2. [Back] Descripción conceptual",
+      "type": "page",
+      "version": 22,
+      "last_modified": "2026-02-17T17:35:44.931Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF Web BackOffice/DF Web BackOffice YoLeoGas/2. [Back] Descripción conceptual"
+    },
+    {
+      "id": "1419378689",
+      "title": "1. Introducción",
+      "type": "page",
+      "version": 3,
+      "last_modified": "2025-10-13T06:46:41.551Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF Procesos Backend/DF Procesos Backend/1. Introducción"
+    },
+    {
+      "id": "1419378723",
+      "title": "2. Descripción conceptual",
+      "type": "page",
+      "version": 8,
+      "last_modified": "2025-10-23T17:12:47.648Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF Procesos Backend/DF Procesos Backend/2. Descripción conceptual"
+    },
+    {
+      "id": "1419509784",
+      "title": "3. Descripción funcional detallada",
+      "type": "page",
+      "version": 4,
+      "last_modified": "2025-10-22T17:39:48.873Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF Procesos Backend/DF Procesos Backend/3. Descripción funcional detallada"
+    },
+    {
+      "id": "1424523273",
+      "title": "3.5. NU_05 - Toma de lectura",
+      "type": "page",
+      "version": 8,
+      "last_modified": "2025-11-12T17:12:15.711Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF App Mobile/DF App YoLeoGas/3. [App] Descripción funcional detallada/3.5. NU_05 - Toma de lectura"
+    },
+    {
+      "id": "1424752657",
+      "title": "3.3.NU_03 – Informe Data Lake",
+      "type": "page",
+      "version": 3,
+      "last_modified": "2025-11-13T16:49:34.704Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF Procesos Backend/DF Procesos Backend/3. Descripción funcional detallada/3.3.NU_03 – Informe Data Lake"
+    },
+    {
+      "id": "1424752664",
+      "title": "3.4. NU_04 – Historificación de los datos",
+      "type": "page",
+      "version": 4,
+      "last_modified": "2026-02-17T17:36:45.686Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF Procesos Backend/DF Procesos Backend/3. Descripción funcional detallada/3.4. NU_04 – Historificación de los datos"
+    },
+    {
+      "id": "1424850990",
+      "title": "3.1. NU_01 - Gestión de usuarios",
+      "type": "page",
+      "version": 7,
+      "last_modified": "2025-10-24T14:27:46.998Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF Web BackOffice/DF Web BackOffice YoLeoGas/3. [Back] Descripción funcional detallada/3.1. NU_01 - Gestión de usuarios"
+    },
+    {
+      "id": "1424883735",
+      "title": "3.3. NU_03 - Registro de contador",
+      "type": "page",
+      "version": 5,
+      "last_modified": "2025-10-15T12:27:57.201Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF App Mobile/DF App YoLeoGas/3. [App] Descripción funcional detallada/3.3. NU_03 - Registro de contador"
+    },
+    {
+      "id": "1424916536",
+      "title": "3.5. NU_05 – Limpieza de documentos",
+      "type": "page",
+      "version": 4,
+      "last_modified": "2026-02-17T17:50:44.512Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF Procesos Backend/DF Procesos Backend/3. Descripción funcional detallada/3.5. NU_05 – Limpieza de documentos"
+    },
+    {
+      "id": "1424949270",
+      "title": "3.5. NU_05 - Lecturas",
+      "type": "page",
+      "version": 4,
+      "last_modified": "2025-10-23T16:38:46.901Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF Web BackOffice/DF Web BackOffice YoLeoGas/3. [Back] Descripción funcional detallada/3.5. NU_05 - Lecturas"
+    },
+    {
+      "id": "1424949280",
+      "title": "3.1. NU_01 – Ciclo de vida de lecturas (OLD)",
+      "type": "page",
+      "version": 11,
+      "last_modified": "2025-11-25T08:21:39.820Z",
+      "path": "3.1. NU_01 – Ciclo de vida de lecturas (OLD)"
+    },
+    {
+      "id": "1425014796",
+      "title": "3.8. NU_08 - Configuración de la distribuidora",
+      "type": "page",
+      "version": 2,
+      "last_modified": "2025-10-24T09:42:46.042Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF Web BackOffice/DF Web BackOffice YoLeoGas/3. [Back] Descripción funcional detallada/3.8. NU_08 - Configuración de la distribuidora"
+    },
+    {
+      "id": "1425047567",
+      "title": "3.3. NU_03 - Validación de lecturas / imágenes",
+      "type": "page",
+      "version": 5,
+      "last_modified": "2025-11-20T18:16:10.981Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF Web BackOffice/DF Web BackOffice YoLeoGas/3. [Back] Descripción funcional detallada/3.3. NU_03 - Validación de lecturas _ imágenes"
+    },
+    {
+      "id": "1425408007",
+      "title": "3.4. NU_04 - Mis contadores",
+      "type": "page",
+      "version": 6,
+      "last_modified": "2025-10-22T07:09:59.634Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF App Mobile/DF App YoLeoGas/3. [App] Descripción funcional detallada/3.4. NU_04 - Mis contadores"
+    },
+    {
+      "id": "1425670154",
+      "title": "3.6. NU_06 - Histórico de lecturas",
+      "type": "page",
+      "version": 4,
+      "last_modified": "2025-11-24T17:23:09.293Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF App Mobile/DF App YoLeoGas/3. [App] Descripción funcional detallada/3.6. NU_06 - Histórico de lecturas"
+    },
+    {
+      "id": "1425670161",
+      "title": "3.6. NU_06 - Perfiles",
+      "type": "page",
+      "version": 2,
+      "last_modified": "2025-10-23T16:38:14.431Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF Web BackOffice/DF Web BackOffice YoLeoGas/3. [Back] Descripción funcional detallada/3.6. NU_06 - Perfiles"
+    },
+    {
+      "id": "1425899525",
+      "title": "3.9. NU_09 - Configuración global",
+      "type": "page",
+      "version": 2,
+      "last_modified": "2025-10-24T09:43:12.940Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF Web BackOffice/DF Web BackOffice YoLeoGas/3. [Back] Descripción funcional detallada/3.9. NU_09 - Configuración global"
+    },
+    {
+      "id": "1425899542",
+      "title": "3.2. NU_02 – Envío de notificaciones",
+      "type": "page",
+      "version": 2,
+      "last_modified": "2025-11-13T16:49:42.319Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF Procesos Backend/DF Procesos Backend/3. Descripción funcional detallada/3.2. NU_02 – Envío de notificaciones"
+    },
+    {
+      "id": "1425997892",
+      "title": "3.2. NU_02 - Menú de la aplicación",
+      "type": "page",
+      "version": 2,
+      "last_modified": "2025-10-17T07:04:35.406Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF Web BackOffice/DF Web BackOffice YoLeoGas/3. [Back] Descripción funcional detallada/3.2. NU_02 - Menú de la aplicación"
+    },
+    {
+      "id": "1425997899",
+      "title": "3.7. NU_07 - Informes",
+      "type": "page",
+      "version": 3,
+      "last_modified": "2025-10-16T15:35:33.856Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF Web BackOffice/DF Web BackOffice YoLeoGas/3. [Back] Descripción funcional detallada/3.7. NU_07 - Informes"
+    },
+    {
+      "id": "1426096129",
+      "title": "3.1. NU_01 - General",
+      "type": "page",
+      "version": 2,
+      "last_modified": "2025-10-22T07:21:32.808Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF App Mobile/DF App YoLeoGas/3. [App] Descripción funcional detallada/3.1. NU_01 - General"
+    },
+    {
+      "id": "1426096136",
+      "title": "3.2. NU_02 - Onboarding",
+      "type": "page",
+      "version": 3,
+      "last_modified": "2025-11-12T17:08:39.678Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF App Mobile/DF App YoLeoGas/3. [App] Descripción funcional detallada/3.2. NU_02 - Onboarding"
+    },
+    {
+      "id": "1426096153",
+      "title": "3.4. NU_04 - Validación de perfiles",
+      "type": "page",
+      "version": 6,
+      "last_modified": "2025-11-20T18:11:05.336Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF Web BackOffice/DF Web BackOffice YoLeoGas/3. [Back] Descripción funcional detallada/3.4. NU_04 - Validación de perfiles"
+    },
+    {
+      "id": "1433501701",
+      "title": "3.10. NU_10 - Consulta de usuarios",
+      "type": "page",
+      "version": 2,
+      "last_modified": "2025-10-17T06:59:03.569Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF Web BackOffice/DF Web BackOffice YoLeoGas/3. [Back] Descripción funcional detallada/3.10. NU_10 - Consulta de usuarios"
+    },
+    {
+      "id": "1438744588",
+      "title": "3.7. NU_07 - Toma de lectura desde W&T",
+      "type": "page",
+      "version": 5,
+      "last_modified": "2025-10-23T12:07:42.774Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF App Mobile/DF App YoLeoGas/3. [App] Descripción funcional detallada/3.7. NU_07 - Toma de lectura desde W&T"
+    },
+    {
+      "id": "1449099289",
+      "title": "Documentación Técnica - Base de Datos",
+      "type": "page",
+      "version": 3,
+      "last_modified": "2025-10-23T15:11:06.735Z",
+      "path": "Nedgia - YoLeoGas/Documentación Técnica/DT Web App BackOffice/Documentación Técnica - Base de Datos"
+    },
+    {
+      "id": "1449754625",
+      "title": "Documentación Técnica - App Flutter",
+      "type": "page",
+      "version": 2,
+      "last_modified": "2025-10-23T16:00:16.827Z",
+      "path": "Nedgia - YoLeoGas/Documentación Técnica/DT App Mobile/Documentación Técnica - App Flutter"
+    },
+    {
+      "id": "1449787420",
+      "title": "Documentación Técnica - API Rest",
+      "type": "page",
+      "version": 2,
+      "last_modified": "2025-10-23T14:58:31.450Z",
+      "path": "Nedgia - YoLeoGas/Documentación Técnica/DT Web App BackOffice/Documentación Técnica - API Rest"
+    },
+    {
+      "id": "1450180614",
+      "title": "Documentación Técnica - Front React",
+      "type": "page",
+      "version": 1,
+      "last_modified": "2025-10-23T15:10:07.227Z",
+      "path": "Nedgia - YoLeoGas/Documentación Técnica/DT Web App BackOffice/Documentación Técnica - Front React"
+    },
+    {
+      "id": "1453490177",
+      "title": "🧪 Plan de pruebas - Web Backoffice YoLeoGas",
+      "type": "page",
+      "version": 1,
+      "last_modified": "2025-10-24T14:54:26.149Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF Web BackOffice/🧪 Plan de pruebas - Web Backoffice YoLeoGas"
+    },
+    {
+      "id": "1464434706",
+      "title": "Sistemas de Monitorización YoLeoGas",
+      "type": "page",
+      "version": 3,
+      "last_modified": "2025-10-29T15:07:32.296Z",
+      "path": "Nedgia - YoLeoGas/Soporte/Sistemas de Monitorización YoLeoGas"
+    },
+    {
+      "id": "1472561162",
+      "title": "Untitled live doc 2025-10-30",
+      "type": "page",
+      "version": 1,
+      "last_modified": "2025-10-30T10:16:19.640Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF Web BackOffice/DF Web BackOffice YoLeoGas/3. [Back] Descripción funcional detallada/Untitled live doc 2025-10-30"
+    },
+    {
+      "id": "1497792513",
+      "title": "3.1. NU_01 – Ciclo de vida de lecturas",
+      "type": "page",
+      "version": 8,
+      "last_modified": "2026-01-21T13:18:29.475Z",
+      "path": "Nedgia - YoLeoGas/Documentación Funcional/DF Procesos Backend/DF Procesos Backend/3. Descripción funcional detallada/3.1. NU_01 – Ciclo de vida de lecturas"
+    },
+    {
+      "id": "1623523331",
+      "title": "Documentación Técnica - Backend y WebApi",
+      "type": "page",
+      "version": 1,
+      "last_modified": "2025-12-30T13:22:32.021Z",
+      "path": "Nedgia - YoLeoGas/Documentación Técnica/DT Web App Backend y WebApi/Documentación Técnica - Backend y WebApi"
+    }
+  ]
+}

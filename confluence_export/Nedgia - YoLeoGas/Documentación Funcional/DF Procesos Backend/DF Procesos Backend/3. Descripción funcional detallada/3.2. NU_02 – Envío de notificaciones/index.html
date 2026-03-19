@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.2. NU_02 – Envío de notificaciones</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #172B4D;
+            margin-top: 1.5em;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .metadata {
+            background: #f4f5f7;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="metadata">
+        <strong>Página:</strong> 3.2. NU_02 – Envío de notificaciones<br>
+        <strong>ID:</strong> 1425899542<br>
+        <strong>Espacio:</strong> Y<br>
+        <strong>Versión:</strong> 2<br>
+        <strong>Última modificación:</strong> 2025-11-13T16:49:42.319Z
+    </div>
+    <hr>
+    <p>La distribuidora Nedgia env&iacute;a un listado con todos los CUPS para los que finaliza el periodo de facturaci&oacute;n y se env&iacute;a una notificaci&oacute;n push a todos los dispositivos asociados a estos CUPS. Para llevar a cabo este flujo, se necesitan los procesos descritos a continuaci&oacute;n.</p><h3>3.2.1.&nbsp;&nbsp; Proceso 1 (WorkerNotificationsDownloader)</h3><p>Proceso que carga todos los CUPS que Nedgia informa que es necesario tener una lectura para el pr&oacute;ximo periodo de facturaci&oacute;n.</p><p>El proceso se ejecuta a la hora definida en el campo cfg_notifier_execution_hour de la entidad CONFIGURATION.</p><p>Los pasos que sigue el proceso son:</p><ol start="1"><li><p>Se busca si existe el fichero que Nedgia deja en el ftp definido y si hay, se procesa</p></li><li><p>Para todos los CUPS del fichero, se crea un nuevo registro en la entidad NEXTIMAGENOTIFICATION con la siguiente informaci&oacute;n</p><ul><li><p>nin_cups: CUPS que ha enviado Zeus</p></li><li><p>nin_date: fecha en la que se ha de enviar la notificaci&oacute;n</p></li></ul></li><li><p>Se comprueba si el CUPS existe en prf_cups de la entidad PROFILE y si est&aacute;, se crea un nuevo registro en la entidad NOTIFICATION con la siguiente informaci&oacute;n</p><ul><li><p>notification_id: identificador &uacute;nico de la notificaci&oacute;n</p></li><li><p>prf_id: perfil al que corresponde la notificaci&oacute;n</p></li><li><p>notification_creation_date: fecha en la que se ha creado la notificaci&oacute;n </p></li><li><p>notification_message: texto que se va a enviar en la notificaci&oacute;n (se considera el definido en dconfig_notifications_1st_message de la entidad CONFIGURATION en el idioma en el que se ha creado el perfil y que est&aacute; en prf_locale de la entidad PROFILE)</p></li><li><p>notification_param1 : par&aacute;metros que se env&iacute;an para que personalizar la notificaci&oacute;n &rarr; valor 4</p></li><li><p>notification_param2 : par&aacute;metros que se env&iacute;an para que personalizar la notificaci&oacute;n &rarr; valor de pr_id de la entidad PROFILE</p></li></ul></li></ol><h3>3.2.2.&nbsp;&nbsp; Proceso 2 (WorkerNotificationSender)</h3><p>Proceso que se encarga de dejar en el Service BUS las notificaciones push que se han generado en el paso anterior.</p><p>Realiza lo siguiente:</p><ol start="1"><li><p>Busca todas las nuevas notificaciones que se han creado, es decir de la entidad NOTIFICATION todos los registros que notification_processing_date no est&aacute; informada</p></li><li><p>Para cada una de las nuevas notificaciones, crea la notificaci&oacute;n push con la informaci&oacute;n que necesita la plataforma de notificaciones push para su env&iacute;o con:</p><ol start="1"><li><p>asunto que ver&aacute; el cliente al recibir la notificaci&oacute;n</p></li><li><p>texto que ver&aacute; al cliente al desplegar la notificaci&oacute;n</p></li><li><p>dispositivo al que se va a enviar</p></li><li><p>sistema operativo del dispositivo</p></li></ol></li><li><p>La notificaci&oacute;n push se deja en el Service BUS lista para su env&iacute;o</p></li></ol><h3>3.2.3.&nbsp;&nbsp; Proceso 3 (PushServer)</h3><p>Proceso que env&iacute;a las notificaciones push que se registran en el Service BUS, tanto para IOS como para Android.</p><p>Para ello,</p><ol start="1"><li><p>Busca todas la notificaciones que se han dejado en el Service BUS</p></li><li><p>Verifica el sistema operativo del dispositivo al que hay que enviar la notificaci&oacute;n de forma que</p><ol start="1"><li><p>si es Android, la env&iacute;a a la plataforma de notificaciones Firebase</p></li><li><p>si es IOS, la env&iacute;a a Pushwoosh</p></li></ol></li><li><p>Adicionalmente,</p><ol start="1"><li><p>se buscan todas las lecturas que han sido rechazadas por la distribuidora (en la entidad IMAGE tiene el estado PROCESSED_NOK)</p></li><li><p>si la lectura la ha dado el cliente (no un t&eacute;cnico) se crea una nueva push para informarle del rechazo y del motivo con:</p><ol start="1"><li><p>asunto que ver&aacute; el cliente al recibir la notificaci&oacute;n</p></li><li><p>texto que ver&aacute; al cliente al desplegar la notificaci&oacute;n</p></li><li><p>dispositivo al que se va a enviar</p></li><li><p>sistema operativo del dispositivo</p></li></ol></li><li><p>se env&iacute;a esta nueva notificaci&oacute;n por la plataforma de notificaci&oacute;n asociada al sistema operativo del dispositivo registrado</p></li></ol></li></ol>
+</body>
+</html>

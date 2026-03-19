@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2. Mapa de integración</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #172B4D;
+            margin-top: 1.5em;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .metadata {
+            background: #f4f5f7;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="metadata">
+        <strong>Página:</strong> 2. Mapa de integración<br>
+        <strong>ID:</strong> 1384939532<br>
+        <strong>Espacio:</strong> Y<br>
+        <strong>Versión:</strong> 1<br>
+        <strong>Última modificación:</strong> 2025-09-25T16:38:26.544Z
+    </div>
+    <hr>
+    <ac:image ac:align="center" ac:layout="center" ac:original-height="200" ac:original-width="800" ac:custom-width="true" ac:alt="Integraci&oacute;n SVG.svg" ac:width="744"><ri:attachment ri:filename="Integraci&oacute;n SVG.svg" ri:version-at-save="1" /></ac:image><p>El diagrama muestra el flujo de datos completo del sistema de validaci&oacute;n de lecturas de gas:</p><ol start="1"><li><p><strong>App M&oacute;vil</strong> &rarr; captura lecturas de contadores y las env&iacute;a</p></li><li><p><strong>Motor OCR</strong> &rarr; procesa las im&aacute;genes y extrae datos autom&aacute;ticamente</p></li><li><p><strong>Base de Datos</strong> &rarr; almacena las lecturas procesadas para validaci&oacute;n</p></li><li><p><strong>API Backoffice</strong> &rarr; consulta datos y sirve al frontend para validaci&oacute;n manual</p></li><li><p><strong>Frontend</strong> &rarr; interfaz donde los operadores validan las lecturas</p></li></ol><p><strong>Flujos paralelos:</strong></p><ul><li><p>Las <strong>im&aacute;genes</strong> se almacenan en <strong>Blob Storage</strong> desde el Motor OCR</p></li><li><p>La <strong>API</strong> descarga im&aacute;genes directamente desde Blob Storage para mostrarlas en el frontend</p></li></ul><p><strong>Los procesos de BackOffice que gestionan la informaci&oacute;n no son alcance de este documento</strong></p>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.7. NU_07 - Toma de lectura desde W&T</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #172B4D;
+            margin-top: 1.5em;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .metadata {
+            background: #f4f5f7;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="metadata">
+        <strong>Página:</strong> 3.7. NU_07 - Toma de lectura desde W&T<br>
+        <strong>ID:</strong> 1438744588<br>
+        <strong>Espacio:</strong> Y<br>
+        <strong>Versión:</strong> 5<br>
+        <strong>Última modificación:</strong> 2025-10-23T12:07:42.774Z
+    </div>
+    <hr>
+    <p>La aplicaci&oacute;n m&oacute;vil de W&amp;T es una app que los t&eacute;cnicos de gas utilizan cuando van a visitar a los clientes a su domicilio para una inspecci&oacute;n peri&oacute;dica de gas. Aprovechando esta visita, los t&eacute;cnicos realizan una fotograf&iacute;a del contador.</p><p>Desde la app W&amp;T hay una opci&oacute;n para dar la lectura del contador donde se est&aacute; haciendo la visita y si se selecciona, se abre directamente la pantalla de Toma de Lectura de YoLeoGas, no hay que registrar previamente el contador.<ac:inline-comment-marker ac:ref="6525410d-84bc-495f-a55b-dd96954bdc5d"> </ac:inline-comment-marker></p><p><ac:inline-comment-marker ac:ref="6525410d-84bc-495f-a55b-dd96954bdc5d">Al comunicarse W&amp;T con YoLeoGas, se env&iacute;a la siguiente informaci&oacute;n:</ac:inline-comment-marker></p><ul><li><p>CUPS</p></li><li><p>Meter ID</p></li><li><p>Oper ID</p></li><li><p>Oper Name</p></li><li><p>Marca</p></li><li><p>Modelo</p></li></ul><p>Cuando el t&eacute;cnico realiza la fotograf&iacute;a del contador, &eacute;sta pasa el mismo control de calidad como si la hubiera realizado el usuario desde la app YoLeoGas (descrito en NU_05 - Toma de lectura). Y se recoge la siguiente informaci&oacute;n de las entidades Contador y Lectura:</p><ul><li><p>Contador</p><ul><li><p>CUPS &rarr; lo informa la app W&amp;T</p></li><li><p>Nombre del contador &rarr; tiene el valor &ldquo;hermesprofile&rdquo;</p></li><li><p>N&uacute;mero de serie del contador &rarr; lo informa la app W&amp;T</p></li><li><p>Sistema operativo del dispositivo m&oacute;vil desde el que se ha registrado el contador &rarr; lo informa la app W&amp;T</p></li><li><p>Versi&oacute;n del sistema operativo &rarr; lo informa la app W&amp;T</p></li><li><p>Modelo del dispositivo m&oacute;vil desde el que se ha registrado el contador &rarr; lo informa la app W&amp;T</p></li><li><p>Versi&oacute;n de la aplicaci&oacute;n m&oacute;vil de YoLeoGas desde el que se ha registrado el contador &rarr; lo informa la app W&amp;T</p></li><li><p>Idioma del dispositivo &rarr; tiene siempre el valor &ldquo;es&rdquo; (correspondiente a castellano)</p></li></ul></li><li><p>Lectura</p><ul><li><p>Canal por el que se ha dado la lectura &rarr; valor &ldquo;HERMES&rdquo;</p></li><li><p>Fecha en la que se ha realizado la lectura</p></li><li><p>Valor de la lectura OCR m&oacute;vil &rarr; resultado del OCR m&oacute;vil</p></li><li><p>Valor lectura manual (si se ha modificado)</p></li><li><p>Valor confianza OCR m&oacute;vil global  &rarr; resultado del OCR m&oacute;vil</p></li><li><p>Valor confianza OCR m&oacute;vil d&iacute;gito 1 .. 8 &rarr; resultado del OCR m&oacute;vil</p></li><li><p>Estado de la lectura  &rarr; &ldquo;PENDING_TO_SEND&rdquo; </p></li></ul></li></ul><p /><p>Y cuando el t&eacute;cnico env&iacute;a la lectura, si hay conexi&oacute;n a Internet se producen las siguientes acciones:</p><ol start="1"><li><p>La imagen se deja en el blog storage y se obtiene un valor que ser&aacute; el identificador &uacute;nico de la imagen</p></li><li><p>Se llama al servicio del backoffice POST /api/HermesImage, con toda la informaci&oacute;n de la entidad Contador y Lectura indicada anteriormente (para crear la entidad PROFILE e IMAGE en el backoffice, ver DF web backoffice) , adem&aacute;s de la siguiente informaci&oacute;n:</p><ul><li><p>Nombre y apellidos del t&eacute;cnico</p></li><li><p>Identificador del t&eacute;cnico</p></li><li><p>Username del t&eacute;cnico</p></li></ul></li></ol><p style="margin-left: 30.0px;">En este momento el estado de la entidad lectura cambia el valor a SENDING.</p><p /><p>Si el servicio responde correctamente,</p><ul><li><p>se mostrar&aacute; un mensaje de OK&nbsp;</p><img src="images/image-20250912-141430.png" alt="image-20250912-141430.png" style="max-width: 100%;" /></li><li><p>en la entidad Contador se actualiza el estado a PENDING_TO_VALIDATE</p></li><li><p>en la entidad Lectura se actualiza el estado a PENDING_TO_VALIDATE</p></li></ul><p>Si se produce alg&uacute;n error, se mostrar&aacute; un mensaje informando de la situaci&oacute;n.</p><p>&nbsp;</p><p>Si el dispositivo no tiene conexi&oacute;n a Internet, se almacena las llamada al servicio y no se produce el env&iacute;o hasta que no detecta la aplicaci&oacute;n que hay conexi&oacute;n.</p><p>&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación Técnica - Front React</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #172B4D;
+            margin-top: 1.5em;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .metadata {
+            background: #f4f5f7;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="metadata">
+        <strong>Página:</strong> Documentación Técnica - Front React<br>
+        <strong>ID:</strong> 1450180614<br>
+        <strong>Espacio:</strong> Y<br>
+        <strong>Versión:</strong> 1<br>
+        <strong>Última modificación:</strong> 2025-10-23T15:10:07.227Z
+    </div>
+    <hr>
+    <h2>1. INFORMACI&Oacute;N GENERAL DEL PROYECTO</h2><h3>1.1 Tipo de Proyecto</h3><ul><li><p><strong>Aplicaci&oacute;n Web Frontend</strong>: Single Page Application (SPA)</p></li><li><p><strong>Prop&oacute;sito</strong>: Plataforma de gesti&oacute;n backoffice para YoleoGas</p></li><li><p><strong>Arquitectura</strong>: Client-side application con comunicaci&oacute;n API REST</p></li></ul><h3>1.2 Identificaci&oacute;n</h3><ul><li><p><strong>Nombre</strong>: YoleoGas Backoffice Frontend</p></li><li><p><strong>Versi&oacute;n</strong>: 1.0.0</p></li><li><p><strong>Repositorio</strong>: AZU-NED-OCR-YOLEOGAS-SERVER/yoleogas-backoffice/yoleogas-backoffice-front</p></li><li><p><strong>Tipo</strong>: Aplicaci&oacute;n React TypeScript con Vite</p></li></ul><h2>2. STACK TECNOL&Oacute;GICO</h2><h3>2.1 Tecnolog&iacute;as Principales</h3><ul><li><p><strong>Framework JavaScript</strong>: React 18.2.0</p></li><li><p><strong>Lenguaje</strong>: TypeScript 5.8.3</p></li><li><p><strong>Build Tool</strong>: Vite 7.1.7</p></li><li><p><strong>Bundler</strong>: Rollup (integrado en Vite)</p></li><li><p><strong>Package Manager</strong>: npm</p></li></ul><h3>2.2 Dependencias Core</h3><ul><li><p><strong>@vitejs/plugin-react</strong>: 4.3.1 - Plugin oficial de React para Vite</p></li><li><p><strong>react-dom</strong>: 18.2.0 - Renderizado DOM para React</p></li></ul><h3>2.3 Frameworks UI y Styling</h3><ul><li><p><strong>CSS Framework</strong>: Tailwind CSS 3.4.0</p></li><li><p><strong>UI Components</strong>: Radix UI (m&uacute;ltiples componentes)</p><ul><li><p>Dialog, Dropdown Menu, Select, Popover, Tooltip</p></li><li><p>Navigation Menu, Scroll Area, Progress</p></li><li><p>Checkbox, Label, Separator, Tabs, Slot</p></li></ul></li><li><p><strong>Iconos</strong>: Lucide React 0.542.0</p></li><li><p><strong>Utilidades CSS</strong>:</p><ul><li><p>clsx 2.1.1</p></li><li><p>tailwind-merge 3.3.1</p></li><li><p>class-variance-authority 0.7.1</p></li></ul></li></ul><h3>2.4 Bibliotecas de Estado y Datos</h3><ul><li><p><strong>Data Table</strong>: @tanstack/react-table 8.21.3</p></li><li><p><strong>Date Handling</strong>: date-fns 4.1.0</p></li><li><p><strong>Calendar</strong>: react-day-picker 9.9.0</p></li></ul><h3>2.5 Herramientas de Desarrollo</h3><ul><li><p><strong>Linting</strong>: ESLint 9.33.0 con TypeScript ESLint 8.39.1</p></li><li><p><strong>PostCSS</strong>: autoprefixer 10.4.21</p></li><li><p><strong>Build Types</strong>: @types/node, @types/react, @types/react-dom</p></li></ul><h3>2.6 Notificaciones y UX</h3><ul><li><p><strong>Toast Notifications</strong>: Sonner 2.0.7</p></li><li><p><strong>Theme Management</strong>: next-themes 0.4.6</p></li></ul><h2>3. AUTENTICACI&Oacute;N Y SEGURIDAD</h2><h3>3.1 Sistema de Autenticaci&oacute;n</h3><ul><li><p><strong>Proveedor</strong>: Microsoft Azure Active Directory (Azure AD)</p></li><li><p><strong>Biblioteca</strong>: Microsoft Authentication Library (MSAL)</p><ul><li><p>@azure/msal-browser 4.25.0</p></li><li><p>@azure/msal-react 3.0.20</p></li></ul></li></ul><h3>3.2 Configuraci&oacute;n de Seguridad</h3><ul><li><p><strong>Auth Flow</strong>: Authorization Code Flow con PKCE</p></li><li><p><strong>Scopes</strong>: User.Read (Microsoft Graph)</p></li><li><p><strong>Cache</strong>: sessionStorage para mayor seguridad</p></li><li><p><strong>Redirect Handling</strong>: navegaci&oacute;n autom&aacute;tica post-login</p></li></ul><h3>3.3 Variables de Entorno de Autenticaci&oacute;n</h3><ac:structured-macro ac:name="code" ac:schema-version="1" ac:macro-id="839b1b17-f4e6-44bb-8ab7-554ac76e4a2a"><ac:parameter ac:name="breakoutMode">wide</ac:parameter><ac:parameter ac:name="breakoutWidth">760</ac:parameter><ac:plain-text-body><![CDATA[VITE_MSAL_ENABLED        // Activar/desactivar MSAL
+VITE_MSAL_REQUIRED       // Hacer obligatoria la autenticación
+VITE_MSAL_CLIENT_ID      // ID de cliente Azure AD
+VITE_MSAL_TENANT_ID      // ID de tenant Azure AD
+VITE_MSAL_REDIRECT_URI   // URI de redirección
+]]></ac:plain-text-body></ac:structured-macro><h2>4. ARQUITECTURA DE LA APLICACI&Oacute;N</h2><h3>4.1 Estructura de Directorios</h3><ac:structured-macro ac:name="code" ac:schema-version="1" ac:macro-id="87b362f4-55aa-45df-a643-ecee88b2fc51"><ac:parameter ac:name="breakoutMode">wide</ac:parameter><ac:parameter ac:name="breakoutWidth">760</ac:parameter><ac:plain-text-body><![CDATA[src/
+├── components/          # Componentes React organizados por funcionalidad
+│   ├── auth/           # Componentes de autenticación
+│   ├── configuration/  # Configuración de distribuidoras y global
+│   ├── informes/       # Gestión de informes y reportes
+│   ├── lecturas/       # Gestión de lecturas de contadores
+│   ├── perfiles/       # Gestión de perfiles de usuario
+│   ├── ui/             # Componentes UI reutilizables (Shadcn/UI)
+│   └── uiylg/          # Componentes UI específicos de YoleoGas
+├── config/             # Configuraciones de la aplicación
+├── contexts/           # React Contexts (AuthContext)
+├── hooks/              # Custom hooks reutilizables
+├── lib/                # Utilidades y helpers
+└── services/           # Servicios API y lógica de negocio
+]]></ac:plain-text-body></ac:structured-macro><h3>4.2 Patrones de Arquitectura</h3><ul><li><p><strong>Component-Based Architecture</strong>: Componentes modulares y reutilizables</p></li><li><p><strong>Custom Hooks Pattern</strong>: L&oacute;gica de negocio separada en hooks</p></li><li><p><strong>Context API</strong>: Gesti&oacute;n de estado global (autenticaci&oacute;n)</p></li><li><p><strong>Service Layer</strong>: Separaci&oacute;n de l&oacute;gica API en servicios</p></li></ul><h3>4.3 Gesti&oacute;n de Estado</h3><ul><li><p><strong>Estado Local</strong>: React useState y useReducer</p></li><li><p><strong>Estado Global</strong>: React Context API (AuthContext)</p></li><li><p><strong>Estado de Formularios</strong>: Controlled components</p></li><li><p><strong>Cache de Datos</strong>: Custom hooks con estado local</p></li></ul><h2>5. MODELO DE DATOS</h2><h3>5.1 Entidades Principales</h3><h4>5.1.1 Lectura (Lectura Types)</h4><ac:structured-macro ac:name="code" ac:schema-version="1" ac:macro-id="49269276-eb32-47c8-a2a1-357e3019e791"><ac:parameter ac:name="breakoutMode">wide</ac:parameter><ac:parameter ac:name="breakoutWidth">760</ac:parameter><ac:plain-text-body><![CDATA[interface Lectura {
+  id: string
+  valor: number
+  fecha: Date
+  contador: string
+  estado: EstadoLectura
+  validacion: EstadoValidacion
+  // Otros campos específicos
+}
+]]></ac:plain-text-body></ac:structured-macro><h4>5.1.2 Perfil (Perfil Types)</h4><ac:structured-macro ac:name="code" ac:schema-version="1" ac:macro-id="36a7e662-db82-4242-9f2b-bb37d322e9b8"><ac:parameter ac:name="breakoutMode">wide</ac:parameter><ac:parameter ac:name="breakoutWidth">760</ac:parameter><ac:plain-text-body><![CDATA[interface Perfil {
+  id: string
+  nombre: string
+  descripcion: string
+  configuracion: ConfiguracionPerfil
+  // Campos de perfil de usuario
+}
+]]></ac:plain-text-body></ac:structured-macro><h4>5.1.3 Informe (Informe Types)</h4><ac:structured-macro ac:name="code" ac:schema-version="1" ac:macro-id="67aa474d-d419-4561-a7f9-213bbad6d633"><ac:parameter ac:name="breakoutMode">wide</ac:parameter><ac:parameter ac:name="breakoutWidth">760</ac:parameter><ac:plain-text-body><![CDATA[interface Informe {
+  id: string
+  tipo: TipoInforme
+  fecha: Date
+  datos: any[]
+  estado: EstadoInforme
+  // Campos específicos de informes
+}
+]]></ac:plain-text-body></ac:structured-macro><h3>5.2 Configuraci&oacute;n</h3><ul><li><p><strong>Distributor Config</strong>: Configuraci&oacute;n espec&iacute;fica por distribuidora</p></li><li><p><strong>Global Config</strong>: Configuraci&oacute;n global de la aplicaci&oacute;n</p></li></ul><h2>6. INTEGRACI&Oacute;N CON SERVICIOS EXTERNOS</h2><h3>6.1 API Backend</h3><ul><li><p><strong>Base URL</strong>: Configurable por entorno via <code>VITE_BACKOFFICE_API_URL</code></p></li><li><p><strong>Protocolo</strong>: HTTP/HTTPS REST API</p></li><li><p><strong>Formato</strong>: JSON</p></li><li><p><strong>Autenticaci&oacute;n</strong>: Bearer Token (Azure AD)</p></li></ul><h3>6.2 Servicios API</h3><ul><li><p><strong>Lecturas API</strong>: Gesti&oacute;n de lecturas de contadores</p></li><li><p><strong>Perfiles API</strong>: Gesti&oacute;n de perfiles de usuario</p></li><li><p><strong>Informes API</strong>: Generaci&oacute;n y consulta de informes</p></li><li><p><strong>Estad&iacute;sticas API</strong>: M&eacute;tricas y analytics</p></li><li><p><strong>Configuration API</strong>: Configuraci&oacute;n de distribuidoras</p></li></ul><h3>6.3 Microsoft Graph API</h3><ul><li><p><strong>Endpoint</strong>: <code>https://graph.microsoft.com/v1.0/me</code></p></li><li><p><strong>Uso</strong>: Obtenci&oacute;n de informaci&oacute;n del usuario autenticado</p></li><li><p><strong>Scopes</strong>: User.Read</p></li></ul><h2>7. ENTORNOS</h2><h3>7.1 Configuraci&oacute;n por Entornos</h3><ul><li><p><strong>Desarrollo Local</strong>: <code>http://localhost:5000</code></p></li><li><p><strong>Desarrollo</strong>: <code>https://backoffice-yoleogas-des.nedgia.es</code></p></li><li><p><strong>Integraci&oacute;n</strong>: <code>https://backoffice-yoleogas-pre.nedgia.es</code></p></li><li><p><strong>Producci&oacute;n</strong>: <code>https://backoffice-yoleogas.nedgia.es</code></p></li></ul><h3>7.2 Variables de Entorno</h3><ac:structured-macro ac:name="code" ac:schema-version="1" ac:macro-id="42a727ac-a1a1-41a1-b329-4ce76525258a"><ac:parameter ac:name="breakoutMode">wide</ac:parameter><ac:parameter ac:name="breakoutWidth">760</ac:parameter><ac:plain-text-body><![CDATA[# API Configuration
+VITE_BACKOFFICE_API_URL=<backend_api_url>
+
+# MSAL Configuration
+VITE_MSAL_ENABLED=true|false
+VITE_MSAL_REQUIRED=true|false
+VITE_MSAL_CLIENT_ID=<azure_client_id>
+VITE_MSAL_TENANT_ID=<azure_tenant_id>
+VITE_MSAL_REDIRECT_URI=<redirect_uri>
+]]></ac:plain-text-body></ac:structured-macro><h2>8. BUILD Y DEPLOYMENT</h2><h3>8.1 Configuraci&oacute;n de Build</h3><ul><li><p><strong>Target</strong>: ES2020</p></li><li><p><strong>Module</strong>: ESNext</p></li><li><p><strong>Bundler</strong>: Rollup con optimizaciones</p></li><li><p><strong>Code Splitting</strong>: Chunks manuales para vendors</p></li><li><p><strong>Source Maps</strong>: Deshabilitados en producci&oacute;n</p></li></ul><h3>8.2 Chunks de Optimizaci&oacute;n</h3><ul><li><p><strong>react-vendor</strong>: React y React-DOM</p></li><li><p><strong>ui-vendor</strong>: Componentes Radix UI</p></li><li><p><strong>utils-vendor</strong>: Utilidades y helpers</p></li></ul><h3>8.3 Scripts de Desarrollo</h3><ac:structured-macro ac:name="code" ac:schema-version="1" ac:macro-id="3a703c34-b57d-4cad-b15b-ede305c1e3b9"><ac:parameter ac:name="breakoutMode">wide</ac:parameter><ac:parameter ac:name="breakoutWidth">760</ac:parameter><ac:plain-text-body><![CDATA[npm run dev      # Servidor de desarrollo
+npm run build    # Build de producción
+npm run preview  # Preview del build
+npm run lint     # Linting del código
+]]></ac:plain-text-body></ac:structured-macro><h2>9. REQUISITOS DEL SISTEMA</h2><h3>9.1 Requisitos de Desarrollo</h3><ul><li><p><strong>Node.js</strong>: &gt;=18.16.0 (recomendado 20.19.0)</p></li><li><p><strong>npm</strong>: &gt;=9.0.0</p></li><li><p><strong>Sistema Operativo</strong>: Windows, macOS, Linux</p></li></ul><h3>9.2 Navegadores Soportados</h3><ul><li><p><strong>Chrome</strong>: &Uacute;ltimas 2 versiones</p></li><li><p><strong>Firefox</strong>: &Uacute;ltimas 2 versiones</p></li><li><p><strong>Safari</strong>: &Uacute;ltimas 2 versiones</p></li><li><p><strong>Edge</strong>: &Uacute;ltimas 2 versiones</p></li></ul><h2>10. FUNCIONALIDADES PRINCIPALES</h2><h3>10.1 Gesti&oacute;n de Lecturas</h3><ul><li><p>Visualizaci&oacute;n de lecturas en tabla con filtros</p></li><li><p>Validaci&oacute;n manual de lecturas</p></li><li><p>Estados: Pendiente, Validada, Rechazada</p></li><li><p>Magnifier para inspecci&oacute;n de im&aacute;genes</p></li></ul><h3>10.2 Gesti&oacute;n de Perfiles</h3><ul><li><p>CRUD de perfiles de usuario</p></li><li><p>Validaci&oacute;n de perfiles</p></li><li><p>Filtros y b&uacute;squedas avanzadas</p></li></ul><h3>10.3 Sistema de Informes</h3><ul><li><p>Informes diarios y mensuales</p></li><li><p>Informes de cluster</p></li><li><p>Exportaci&oacute;n de datos</p></li><li><p>Filtros por fecha y distribuidora</p></li></ul><h3>10.4 Configuraci&oacute;n</h3><ul><li><p>Configuraci&oacute;n global del sistema</p></li><li><p>Configuraci&oacute;n espec&iacute;fica por distribuidora</p></li><li><p>Gesti&oacute;n de par&aacute;metros operativos</p></li></ul><h2>11. COMPONENTES UI PERSONALIZADOS</h2><h3>11.1 Componentes YoleoGas (uiylg/)</h3><ul><li><p><strong>ImageMagnifier</strong>: Lupa para inspecci&oacute;n de im&aacute;genes</p></li><li><p><strong>LecturaInfo</strong>: Informaci&oacute;n detallada de lecturas</p></li><li><p><strong>LecturaInput</strong>: Input especializado para lecturas</p></li><li><p><strong>RejectionModal</strong>: Modal para rechazo de lecturas</p></li><li><p><strong>ValidacionLecturasAcciones</strong>: Acciones de validaci&oacute;n</p></li></ul><h3>11.2 Componentes UI Base (ui/)</h3><ul><li><p>Basados en Shadcn/UI con Radix UI</p></li><li><p>Componentes accesibles y reutilizables</p></li><li><p>Theming con Tailwind CSS</p></li></ul><h2>12. RENDIMIENTO Y OPTIMIZACI&Oacute;N</h2><h3>12.1 Optimizaciones de Bundle</h3><ul><li><p>Code splitting por vendor</p></li><li><p>Lazy loading de componentes</p></li><li><p>Tree shaking autom&aacute;tico</p></li><li><p>L&iacute;mite de chunk: 1000kb</p></li></ul><h3>12.2 Optimizaciones de Rendimiento</h3><ul><li><p>React.memo para componentes costosos</p></li><li><p>useMemo y useCallback para optimizaciones</p></li><li><p>Virtualizaci&oacute;n en tablas grandes (@tanstack/react-table)</p></li></ul><h2>13. TESTING Y CALIDAD</h2><h3>13.1 Herramientas de Calidad</h3><ul><li><p><strong>ESLint</strong>: An&aacute;lisis est&aacute;tico de c&oacute;digo</p></li><li><p><strong>TypeScript</strong>: Type checking</p></li><li><p><strong>Prettier</strong>: Formateo de c&oacute;digo (configuraci&oacute;n en proyecto)</p></li></ul><h3>13.2 Est&aacute;ndares de C&oacute;digo</h3><ul><li><p><strong>Naming</strong>: camelCase para variables, PascalCase para componentes</p></li><li><p><strong>Structure</strong>: Organizaci&oacute;n por funcionalidad</p></li><li><p><strong>Types</strong>: Tipado estricto con TypeScript</p></li></ul><h2>14. MONITOREO Y LOGGING</h2><h3>14.1 Logging de Autenticaci&oacute;n</h3><ul><li><p>Logs de MSAL con diferentes niveles</p></li><li><p>Exclusi&oacute;n de informaci&oacute;n PII</p></li><li><p>Configuraci&oacute;n por entorno</p></li></ul><h3>14.2 Error Handling</h3><ul><li><p>Try-catch en servicios API</p></li><li><p>Toast notifications para errores de usuario</p></li><li><p>Fallbacks para componentes cr&iacute;ticos</p></li></ul><h2>15. CONSIDERACIONES DE SEGURIDAD</h2><h3>15.1 Autenticaci&oacute;n</h3><ul><li><p>Tokens en sessionStorage (no localStorage)</p></li><li><p>Validaci&oacute;n de tokens en cada request</p></li><li><p>Logout autom&aacute;tico en expiraci&oacute;n</p></li></ul><h3>15.2 Configuraci&oacute;n Segura</h3><ul><li><p>Variables sensibles en environment variables</p></li><li><p>No hardcoding de credenciales</p></li><li><p>HTTPS obligatorio en producci&oacute;n</p></li></ul><h2>16. ROADMAP Y ESCALABILIDAD</h2><h3>16.1 Escalabilidad</h3><ul><li><p>Arquitectura modular para crecimiento</p></li><li><p>Componentes reutilizables</p></li><li><p>Separaci&oacute;n clara de responsabilidades</p></li></ul><h3>16.2 Potenciales Mejoras</h3><ul><li><p>Implementaci&oacute;n de PWA</p></li><li><p>Offline capabilities</p></li><li><p>Real-time updates con WebSockets</p></li><li><p>Internacionalizaci&oacute;n (i18n)</p></li><li><p>Testing automatizado</p></li></ul><hr /><p><em>Documento t&eacute;cnico - Versi&oacute;n 1.0</em><br /><em>Fecha: Octubre 2025</em><br /><em>Proyecto: APP YoLeoGas</em> <em>Equipo: Lean Customer Services</em></p>
+</body>
+</html>

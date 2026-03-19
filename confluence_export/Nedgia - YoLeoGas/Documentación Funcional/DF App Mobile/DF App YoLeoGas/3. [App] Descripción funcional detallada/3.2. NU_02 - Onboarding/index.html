@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.2. NU_02 - Onboarding</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #172B4D;
+            margin-top: 1.5em;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .metadata {
+            background: #f4f5f7;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="metadata">
+        <strong>Página:</strong> 3.2. NU_02 - Onboarding<br>
+        <strong>ID:</strong> 1426096136<br>
+        <strong>Espacio:</strong> Y<br>
+        <strong>Versión:</strong> 3<br>
+        <strong>Última modificación:</strong> 2025-11-12T17:08:39.678Z
+    </div>
+    <hr>
+    <p>Al iniciar la aplicaci&oacute;n se muestra una pantalla en blanco y acto seguido mientras se carga, aparece el siguiente splash de presentaci&oacute;n:</p><img src="images/image-20250916-104508.png" alt="image-20250916-104508.png" style="max-width: 100%;" /><p>A continuaci&oacute;n, si es la primera vez que se accede aparece una ayuda con:</p><ul><li><p>Informaci&oacute;n de la obligaci&oacute;n de la distribuidora a recoger la lectura de contador de gas, con enlace al BOE</p><img src="images/image-20250917-102805.png" alt="image-20250917-102805.png" style="max-width: 100%;" /></li><li><p>Informaci&oacute;n de las funcionalidades de la app</p></li></ul><img src="images/image-20250910-155127.png" alt="image-20250910-155127.png" style="max-width: 100%;" /><p>&nbsp;</p><p>Se puede pasar de una pantalla a otra mediante la acci&oacute;n de &ldquo;swipe&rdquo; sobre la pantalla.</p><p>Las siguientes veces que el usuario entra en la app, esta ayuda ya no se muestra directamente pero es accesible desde la opci&oacute;n de men&uacute; de Mis contadores (ver NU_04).</p><p>Al entrar en la aplicaci&oacute;n, siempre se llama a los siguientes servicios de backoffice:</p><ul><li><p>servicio para recuperar los par&aacute;metros generales de la aplicaci&oacute;n necesarios para el funcionamiento de la app (GET&nbsp; /api/Params)</p><ul><li><p>este servicio recupera de la entidad CONFIGURATION del backoffice los par&aacute;metros cfg_ocrService_mobile_MinOcrConfidenceForDigit1 ..8</p></li></ul></li><li><p>servicio para registrar el dispositivo en la plataforma de notiificaciones push ( POST /api/Device)</p></li></ul><p>&nbsp;</p>
+</body>
+</html>

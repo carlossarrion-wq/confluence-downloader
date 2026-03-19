@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.1. NU_01 - Gestión de usuarios</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #172B4D;
+            margin-top: 1.5em;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .metadata {
+            background: #f4f5f7;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="metadata">
+        <strong>Página:</strong> 3.1. NU_01 - Gestión de usuarios<br>
+        <strong>ID:</strong> 1424850990<br>
+        <strong>Espacio:</strong> Y<br>
+        <strong>Versión:</strong> 7<br>
+        <strong>Última modificación:</strong> 2025-10-24T14:27:46.998Z
+    </div>
+    <hr>
+    <p>Cada usuario de la web de Backoffice tiene asociado un rol espec&iacute;fico que define sus permisos y las pantallas a las que puede acceder.</p><h3>3.1.1. Tipolog&iacute;a de usuarios</h3><p>Actualmente existen 3 roles en la aplicaci&oacute;n:</p><h4>Administrador (user_type = 0):</h4><ul><li><p>Tiene acceso a todas las funcionalidades de la aplicaci&oacute;n</p></li></ul><p><strong> Manager (user_type = 3):</strong></p><ul><li><p>Tiene acceso a todas las funcionalidades, excepto la configuraci&oacute;n global</p></li><li><p> Puede validar im&aacute;genes y perfiles que hayan pasado a supervisi&oacute;n</p></li></ul><p> <strong>Validador (user_type = 1):</strong></p><ul><li><p>Su funci&oacute;n principal es la validaci&oacute;n de im&aacute;genes y perfiles</p></li><li><p>Puede ver la lista de im&aacute;genes y perfiles</p></li><li><p>Puede reasignar perfiles</p></li><li><p>No tiene acceso a la configuraci&oacute;n, informes ni consulta de usuarios</p></li></ul><h3>3.1.2. Mapa de funcionalidades y roles</h3><p>Detalle de las funcionalidades por rol.</p><table data-table-width="760" data-layout="default" ac:local-id="9fdbc53b-09b4-4449-a9a5-318464ef21c7"><colgroup><col style="width: 301.0px;" /><col style="width: 157.0px;" /><col style="width: 129.0px;" /><col style="width: 173.0px;" /></colgroup><tbody><tr><td data-highlight-colour="#ffffff"><p><strong>Funcionalidad</strong></p></td><td data-highlight-colour="#ffffff"><p><strong>Administrador</strong></p></td><td data-highlight-colour="#ffffff"><p><strong>Manager</strong></p></td><td data-highlight-colour="#ffffff"><p><strong>Validador</strong></p></td></tr><tr><td data-highlight-colour="#ffffff"><p>Validaci&oacute;n de Im&aacute;genes</p></td><td data-highlight-colour="#ffffff"><p>SI</p></td><td data-highlight-colour="#ffffff"><p>SI</p></td><td data-highlight-colour="#ffffff"><p>SI</p></td></tr><tr><td data-highlight-colour="#ffffff"><p>Validaci&oacute;n de Perfiles</p></td><td data-highlight-colour="#ffffff"><p>SI</p></td><td data-highlight-colour="#ffffff"><p>SI</p></td><td data-highlight-colour="#ffffff"><p>SI</p></td></tr><tr><td data-highlight-colour="#ffffff"><p>Gesti&oacute;n de Im&aacute;genes</p></td><td data-highlight-colour="#ffffff"><p>SI</p></td><td data-highlight-colour="#ffffff"><p>SI</p></td><td data-highlight-colour="#ffffff"><p>SI</p></td></tr><tr><td data-highlight-colour="#ffffff"><p>Gesti&oacute;n de Perfiles</p></td><td data-highlight-colour="#ffffff"><p>SI</p></td><td data-highlight-colour="#ffffff"><p>SI</p></td><td data-highlight-colour="#ffffff"><p>SI</p></td></tr><tr><td data-highlight-colour="#ffffff"><p>Informes</p></td><td data-highlight-colour="#ffffff"><p>SI</p></td><td data-highlight-colour="#ffffff"><p>SI</p></td><td data-highlight-colour="#ffffff"><p>&nbsp;</p></td></tr><tr><td data-highlight-colour="#ffffff"><p>Configuraci&oacute;n Global</p></td><td data-highlight-colour="#ffffff"><p>SI</p></td><td data-highlight-colour="#ffffff"><p>&nbsp;</p></td><td data-highlight-colour="#ffffff"><p>&nbsp;</p></td></tr><tr><td data-highlight-colour="#ffffff"><p>Configuraci&oacute;n de Distribuidora</p></td><td data-highlight-colour="#ffffff"><p>SI</p></td><td data-highlight-colour="#ffffff"><p>SI</p></td><td data-highlight-colour="#ffffff"><p>&nbsp;</p></td></tr><tr><td data-highlight-colour="#ffffff"><p>Consulta de usuarios</p></td><td data-highlight-colour="#ffffff"><p>SI</p></td><td data-highlight-colour="#ffffff"><p /></td><td data-highlight-colour="#ffffff"><p /></td></tr></tbody></table><h3>3.1.3. Flujo de inicio de sesi&oacute;n</h3><p>Al abrir la aplicaci&oacute;n se solicitar&aacute; la introducci&oacute;n de una cuenta de usuario y clave de paso. <strong>Esta securizaci&oacute;n se realizar&aacute; por Entra ID de Microsoft con la plataforma corporativa de Naturgy.</strong></p><h3>3.1.4. Gesti&oacute;n de usuarios y roles</h3><p>La gesti&oacute;n de usuarios y roles est&aacute; delegada a Entra ID. <strong>Para la creaci&oacute;n de un nuevo usuario o modificaci&oacute;n de su rol se deber&aacute; crear una solicitud de F1.</strong></p><p>En EntraID para cada usuario estar&aacute;n informados los siguientes atributos:</p><ul><li><p>nombre y apellidos</p></li><li><p>c&oacute;digo de usuario</p></li><li><p>rol que el usuario tiene en la aplicaci&oacute;n</p></li></ul><p>Esta gesti&oacute;n quedar&aacute; eliminada de la aplicaci&oacute;n, que verificar&aacute; el rol existente tanto en la parte de frontal de usuario para mostrar las funciones como la parte de API para validar los accesos correspondientes.</p><h3>3.1.5. Login de usuarios </h3><p>Cada vez que un usuario entre en la aplicaci&oacute;n web de backoffice la entidad USER se informar&aacute; de la siguiente forma:</p><ul><li><p>user_id: c&oacute;digo del usuario que proporciona EntraID</p></li><li><p>user_name: nombre y apellidos del usuario que proporciona EntraID</p></li><li><p>user_lastlogin: fecha en la que se est&aacute; accediendo</p></li><li><p>user_type: rol que el usuario tiene en la aplicaci&oacute;n que proporciona EntraID</p></li></ul><p>Toda esta informaci&oacute;n se actualizar&aacute; en la tabla portaluser.</p>
+</body>
+</html>

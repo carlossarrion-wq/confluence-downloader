@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.4. NU_04 – Historificación de los datos</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #172B4D;
+            margin-top: 1.5em;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .metadata {
+            background: #f4f5f7;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="metadata">
+        <strong>Página:</strong> 3.4. NU_04 – Historificación de los datos<br>
+        <strong>ID:</strong> 1424752664<br>
+        <strong>Espacio:</strong> Y<br>
+        <strong>Versión:</strong> 4<br>
+        <strong>Última modificación:</strong> 2026-02-17T17:36:45.686Z
+    </div>
+    <hr>
+    <p local-id="b6679cdf-c878-400e-8319-15e11f57921f">El proceso WorkerHistorize se encarga de traspasar datos con una antig&uuml;edad superior a x meses, para garantizar el rendimiento de la base de datos definida.</p><p local-id="6ad6528e-b5f5-43d8-9902-d8cde9a07e26">El valor a considerar viene determinado por el par&aacute;metro <ac:inline-comment-marker ac:ref="5304220b-8cc7-43c1-b36a-c0b4dc17cc0c">cfg_months_historical_data </ac:inline-comment-marker>de la entidad CONFIGURATION y actualmente tiene el valor de 6 meses. Este valor se puede modificar desde la web de backoffice, ver NU_09 - Configuraci&oacute;n global. Y las horas en las que se ejecuta el proceso viene determinado por  cfg_reindexer_hour (actualmente tiene el valor 0-23).</p><p local-id="0b78d46f-47b2-4b9b-909b-03716563b02a">El proceso realiza lo siguiente:</p><ol start="1" local-id="fbe57514-78f1-4ebe-b0c6-4a21030adf51"><li local-id="532cd2c6-4639-4139-9411-8a95c81ccee1"><p local-id="c6dacedd-d758-43fc-bed2-0f6256db1f84">Actualizaci&oacute;n de mensajes enviados a distribuidora. Actualiza el campo FechEntrZEUS en la tabla WMB para aquellos registros que cumplen: </p><ul local-id="8523075d4bab"><li local-id="56bae2248a2c"><p local-id="cc3d7403abf0">NO tienen fecha de entrada a ZEUS (FechEntrZEUS is null)</p></li><li local-id="6d96410aff29"><p local-id="11d512bdcebe">NO tienen error de distribuidor (CodErrDIS is null)</p></li><li local-id="95efd42f4908"><p local-id="857a05bd5ed8">La imagen asociada est&aacute; en estado PROCESSED_HERMES</p></li></ul></li><li local-id="0f4ae07da77b"><p local-id="705912bbb157">Limpieza de Logs. Borra de la tabla Logs los registros m&aacute;s antiguos de 30 d&iacute;as, procesando en lotes de 5000 registros.</p></li><li local-id="f8b8b9b2303b"><p local-id="005310f93bcf">Mover notificaciones a hist&oacute;rico.</p><ul local-id="a454d95d62d4"><li local-id="600b06c35fcd"><p local-id="05f41073756b">Busca notificaciones de NOTIFICATION creadas (campo notification_creation_date) con una antig&uuml;edad superior <ac:inline-comment-marker ac:ref="5304220b-8cc7-43c1-b36a-c0b4dc17cc0c">a los indicado en el atributo cfg_months_historical_data de la entidad CONFIGURATION</ac:inline-comment-marker></p></li><li local-id="57ec8ed0ad4b"><p local-id="d4fa5d1672b8">Se procesan en lotes de 100 registros</p></li><li local-id="526ac1940b37"><p local-id="93c3f6c73184">Se copian los registros en la tabla NOTIFICATION_HIST</p></li><li local-id="6d27c34a601d"><p local-id="4c866ae66ea1">Se borran los registros de NOTIFICATION</p></li></ul></li><li local-id="c363aff37889"><p local-id="b20a43104a5e">Mover Im&aacute;genes y mensajes enviados a distribuidora a hist&oacute;rico,</p><ul local-id="522e10fc088e"><li local-id="83ae5a76b495"><p local-id="90ce393acf43">Busca im&aacute;genes en IMAGE que est&eacute;n en estado PROCESSED, DISCARDED y PROCESSED_HERMES con una antig&uuml;edad superior <ac:inline-comment-marker ac:ref="5304220b-8cc7-43c1-b36a-c0b4dc17cc0c">a los indicado en el atributo cfg_months_historical_data de la entidad CONFIGURATION</ac:inline-comment-marker>.</p></li><li local-id="12d8d09b3785"><p local-id="4638e5100488">Se procesan en lotes de 100 im&aacute;genes</p></li><li local-id="d3d8b3cce34f"><p local-id="a3413cc6615f">Se copian los registros de las im&aacute;genes asociadas en WMB_HIST y los borra de WMB</p></li><li local-id="9cc01811113c"><p local-id="fdd4860b1956">Se copian las im&aacute;genes a IMAGE_HIST y se borran de IMAGE</p></li></ul></li><li local-id="9f2dabdb82af"><p local-id="6aaddb8ef1f9">Mover Perfiles a hist&oacute;rico.</p><ul local-id="3d47fd63e340"><li local-id="c89938ee4e4a"><p local-id="f4a92c820b40">Busca perfiles en PROFILE con origen HERMES con una antig&uuml;edad superior <ac:inline-comment-marker ac:ref="5304220b-8cc7-43c1-b36a-c0b4dc17cc0c">a los indicado en el atributo cfg_months_historical_data de la entidad CONFIGURATION</ac:inline-comment-marker>.</p></li><li local-id="d6a117653668"><p local-id="2887b4a8da92">Se procesan en lotes de 100 perfiles</p></li><li local-id="f1039ee4b58e"><p local-id="58ae395908ec">Valida que NO tengan notificaciones activas y que NO tengan im&aacute;genes activas</p></li><li local-id="f238dc3781bd"><p local-id="0868412ec129">Solo mueve perfiles (sin referencias)</p></li><li local-id="e0d561fd25ec"><p local-id="a8cdbb7a4e8b">Se copia el perfile en PROFILE_HIST y se borra de PROFILE </p></li></ul></li></ol><p local-id="63b08655533e">OBS: Para obtener cu&aacute;ndo fue la &uacute;ltima ejecuci&oacute;n del proceso, se mira en la tabla REINDEXER (<strong>SELECT</strong>&nbsp;&nbsp; rei_id,&nbsp;&nbsp;&nbsp; rei_last_execution <strong>FROM</strong> reindexer)</p><p local-id="55a8e2a80c1b" />
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.6. NU_06 - Histórico de lecturas</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #172B4D;
+            margin-top: 1.5em;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .metadata {
+            background: #f4f5f7;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="metadata">
+        <strong>Página:</strong> 3.6. NU_06 - Histórico de lecturas<br>
+        <strong>ID:</strong> 1425670154<br>
+        <strong>Espacio:</strong> Y<br>
+        <strong>Versión:</strong> 4<br>
+        <strong>Última modificación:</strong> 2025-11-24T17:23:09.293Z
+    </div>
+    <hr>
+    <p local-id="ad70cb50-6488-4377-9ec8-aff56dd9a179">Desde la pantalla de Mis contadores, se puede acceder a la pantalla de Hist&oacute;rico de lecturas, donde para el contador seleccionado se muestra el hist&oacute;rico de todas las lecturas y fotograf&iacute;as que se han enviado desde el m&oacute;vil desde el que se est&aacute; consultando.</p><p local-id="492b820e-5d2c-4137-a1fc-3a659d959c60">&nbsp;La informaci&oacute;n que se visualiza es:</p><ul local-id="15725b55-07ee-41b6-9f22-ececef4e7665"><li local-id="27b0fbbe-b637-4199-a706-4836f0614d3a"><p local-id="79f0bbd4-eacd-4bd8-a866-f3a51922c74d">Nombre del contador</p></li><li local-id="adc70b50-3588-4848-9157-36aba956c1e1"><p local-id="ce94867b-d1b0-47e7-88a6-1d724b1071e9">CUPS del contador</p></li><li local-id="a485bd99-83ba-46ad-bc23-4b43da295f10"><p local-id="ceb133ad-7efb-4c8d-a177-8473425de175">Fecha de la &uacute;ltima lectura registrada</p></li><li local-id="92f7314e-e8a0-47e6-94e0-7f08f4757af1"><p local-id="4c5cd09b-f048-4cc6-a1e5-12f317464064">Icono con una m&aacute;quina de fotos dibujada, que al pulsar lleva al primer paso de toma de lectura (descrito en el apartado anterior).</p></li><li local-id="c1a476be-74e2-481f-9f52-aeb57edfe868"><p local-id="0d0b8461-9092-4067-a21f-d1bab582bb09">Hist&oacute;rico de lecturas</p><ul local-id="61f004e6-750f-40b8-b7b7-efd353a3b852"><li local-id="89a82f9b-6a70-4c90-90fa-0b8bf435f3a4"><p local-id="f9c82bbb-50ea-47e2-bb99-141f904483eb">Fotograf&iacute;a en miniatura (al seleccionarla, se muestra la imagen ampliada)</p></li><li local-id="0e96395f-5636-4ada-ae1b-5604b485c2d4"><p local-id="60847721-785f-4115-821e-4275fb19b76a">Fecha en la que se envi&oacute; la lectura y fotograf&iacute;a</p></li><li local-id="9dae0700-8736-4c28-a221-cf7eb88e71e3"><p local-id="233166ec-f905-4b62-9a69-f7dca69cbdd6">Estado de validaci&oacute;n de la lectura enviada (posibles valores: En validaci&oacute;n, Recibida, Rechazada)&nbsp;</p><img src="images/image-20250917-163841.png" alt="image-20250917-163841.png" style="max-width: 100%;" /></li></ul><p local-id="247a16fa-4fc5-414b-a706-c3586298c0f4" style="margin-left: 30.0px;">Al introducir la nueva hora y aceptar, </p><p local-id="f09b3761-a92a-4950-b7aa-dc1f5eb0dfb1" style="margin-left: 60.0px;">-se actualiza el campo &ldquo;Hora notificaci&oacute;n aviso pr&oacute;xima lectura&rdquo; de la entidad Contador </p><p local-id="e61e034a-168b-4b82-ae76-65c15d82dbbb" style="margin-left: 60.0px;">-se llama al servicio del backoffice PUT /api/Profile/{id} para que actualice en la entidad PROFILE del backoffice el campo prf_notification_hour donde se guarda la hora de la notificaci&oacute;n, con la siguiente informaci&oacute;n:</p><p local-id="e1b2656d-11dd-4aee-bd5f-8800967bbf7a" style="margin-left: 90.0px;">-identificador del perfil que se quiere actualizar</p><p local-id="78945f81-31d0-4534-853c-5d2e9faebd05" style="margin-left: 90.0px;">-prf_notification_hour &rarr; nueva hora para la notificaci&oacute;n</p><ul local-id="c1e35086-fd57-43bc-bf19-a48732c15fe3"><li local-id="e37b0c63-9d3b-4d4d-8105-4c0af7f166a3"><p local-id="bd1fda33-f71b-4d0b-bc15-f7e6926b5ce6">Desactivar aviso bimensual -&gt; esta opci&oacute;n se muestra solo si se ha activado previamente el aviso y aparece un pop-up donde se solicita la confirmaci&oacute;n.</p></li></ul><p local-id="9047df8a-aadf-4818-b8b4-cf9f2ef3c2ea" style="margin-left: 30.0px;">Si se confirma,</p><p local-id="1a86ac85-d928-41db-9677-1a3fd94e1992" style="margin-left: 60.0px;">-se actualiza el campo &ldquo;Permite notificaciones de aviso de pr&oacute;xima lectura&rdquo; de la entidad Contador con valor false</p><p local-id="28e43a01-3bb8-477d-9987-df487d9952bb" style="margin-left: 60.0px;">-se llama al servicio del backoffice PUT /api/Profile/{id} para que actualice en la entidad PROFILE del backoffice el campo prf_allow_notifications de la entidad PROFILE , con la siguiente informaci&oacute;n:</p><p local-id="8f19df15-8a82-4f8b-981f-87a706c627d1" style="margin-left: 90.0px;">-identificador del perfil que se quiere actualizar</p><p local-id="4b777fe5-4777-432f-8654-fb9437ed0ba2" style="margin-left: 90.0px;">-prf_allow_notifications &rarr; valor false</p>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.9 NU_09 - Configuración global</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #172B4D;
+            margin-top: 1.5em;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .metadata {
+            background: #f4f5f7;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="metadata">
+        <strong>Página:</strong> 3.9 NU_09 - Configuración global<br>
+        <strong>ID:</strong> 1385037861<br>
+        <strong>Espacio:</strong> Y<br>
+        <strong>Versión:</strong> 1<br>
+        <strong>Última modificación:</strong> 2025-09-25T17:02:25.845Z
+    </div>
+    <hr>
+    <p>La <strong>Configuraci&oacute;n Global</strong> establece los par&aacute;metros base del sistema que afectan a todas las distribuidoras, mientras que la <strong>Configuraci&oacute;n de Distribuidoras</strong> permite personalizar estos par&aacute;metros para cada distribuidora espec&iacute;fica, a&ntilde;adiendo funcionalidades avanzadas como notificaciones personalizadas, integraci&oacute;n espec&iacute;fica y configuraciones OCR m&aacute;s granulares.</p><p><strong>Configuraci&oacute;n Global (SuperAdmin):</strong></p><ul><li><p><strong>Alcance</strong>: Afecta a <strong>todo el sistema</strong> a nivel global</p></li><li><p><strong>Prop&oacute;sito</strong>: Par&aacute;metros generales que se aplican por defecto a todas las distribuidoras</p></li><li><p><strong>Usuarios</strong>: Solo accesible por <strong>SuperAdmin</strong></p></li><li><p><strong>Tabla BD</strong>: <code>configuration</code> (registro &uacute;nico)</p></li></ul><p><strong>Configuraci&oacute;n de Distribuidoras:</strong></p><ul><li><p><strong>Alcance</strong>: Espec&iacute;fica para <strong>cada distribuidora individual</strong></p></li><li><p><strong>Prop&oacute;sito</strong>: Personalizaci&oacute;n de par&aacute;metros por distribuidora, sobrescribiendo valores globales</p></li><li><p><strong>Usuarios</strong>: Accesible por <strong>Manager</strong> y <strong>SuperAdmin</strong></p></li><li><p><strong>Tabla BD</strong>: <code>distributor_configuration</code> (m&uacute;ltiples registros, uno por distribuidora)</p></li></ul><h3>Funcionalidades Principales</h3><h4><strong>Solo en Configuraci&oacute;n Global:</strong></h4><ul><li><p><strong>Gesti&oacute;n de im&aacute;genes</strong>: D&iacute;as de retenci&oacute;n en Documentum</p></li><li><p><strong>Horarios del sistema</strong>:</p><ul><li><p>Hora de notificaciones generales</p></li><li><p>Hora de notificaciones de distribuidoras</p></li><li><p>Hora de informes de exceso</p></li><li><p>Hora de reindexaci&oacute;n/mantenimiento BD</p></li><li><p>Hora de informes de backoffice</p></li></ul></li><li><p><strong>Configuraci&oacute;n de email</strong>: Contrase&ntilde;a de cuenta de env&iacute;os</p></li><li><p><strong>Configuraci&oacute;n de sistema</strong>:</p><ul><li><p>Habilitar valoraciones</p></li><li><p>Prioridad SCTD</p></li><li><p>Minutos entre reintentos de distribuidoras</p></li><li><p>Minutos entre limpiezas de Documentum</p></li><li><p>Meses para archivo hist&oacute;rico</p></li></ul></li></ul><h4><strong>Configuraci&oacute;n de OCR</strong></h4><p>Algunos par&aacute;metros OCR existen en ambas configuraciones pero con diferente nivel de detalle:</p><h5><strong>Configuraci&oacute;n Global</strong> (m&aacute;s b&aacute;sica):</h5><ul><li><p>Confianza m&iacute;nima OCR m&oacute;vil (1 valor general)</p></li><li><p>Confianza m&iacute;nima OCR otras im&aacute;genes (valores b&aacute;sicos)</p></li></ul><h5><strong>Configuraci&oacute;n Distribuidoras</strong> (m&aacute;s granular):</h5><ul><li><p>Confianza por d&iacute;gito restrictiva (8 valores)</p></li><li><p>Confianza por d&iacute;gito tolerante (8 valores)</p></li><li><p>Configuraci&oacute;n m&oacute;vil restrictiva vs tolerante</p></li></ul>
+</body>
+</html>

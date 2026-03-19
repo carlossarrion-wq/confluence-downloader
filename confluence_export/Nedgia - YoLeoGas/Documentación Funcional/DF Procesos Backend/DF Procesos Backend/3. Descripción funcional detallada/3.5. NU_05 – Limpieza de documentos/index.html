@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.5. NU_05 – Limpieza de documentos</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #172B4D;
+            margin-top: 1.5em;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .metadata {
+            background: #f4f5f7;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="metadata">
+        <strong>Página:</strong> 3.5. NU_05 – Limpieza de documentos<br>
+        <strong>ID:</strong> 1424916536<br>
+        <strong>Espacio:</strong> Y<br>
+        <strong>Versión:</strong> 4<br>
+        <strong>Última modificación:</strong> 2026-02-17T17:50:44.512Z
+    </div>
+    <hr>
+    <p local-id="66413163-34b2-4cfa-8616-d9e5278201b4">El proceso CleanStorage se encarga de eliminar del storage de Azure aquellas im&aacute;genes con una antig&uuml;edad superior a x d&iacute;as. El valor a considerar viene determinado por el par&aacute;metro <ac:inline-comment-marker ac:ref="21540a6e-7cb3-47c9-8217-a6caed5bfd69">cfg_documentum_retain_image_days</ac:inline-comment-marker> de la entidad CONFIGURATION y actualmente tiene el valor de 180 d&iacute;as. Este valor se puede modificar desde la web de backoffice, ver NU_09 - Configuraci&oacute;n global.</p><p local-id="6018aef4-a863-4fd9-be87-4992a985adc5">El proceso realiza lo siguiente:</p><ol start="1" local-id="543c0ed77b6a"><li local-id="d7573b232cc4"><p local-id="2d4f53ba1d76">Buscar im&aacute;genes que hay que borrar. Son aquellas im&aacute;genes de IMAGE que cumplen:</p><ul local-id="53f46b59523b"><li local-id="7fd1ac993836"><p local-id="bdc596aa5a6e">Ya han sido enviadas correctamente a distribuidora (image_status_stage = 'PROCESSED')</p></li><li local-id="aa09e85e562c"><p local-id="64ffcfb93755">No han sido borradas todav&iacute;a (image_released = 0)</p></li><li local-id="5117f25e3134"><p local-id="1b8bc78a7e25">Son m&aacute;s antiguas que lo indicado por el par&aacute;metro <ac:inline-comment-marker ac:ref="21540a6e-7cb3-47c9-8217-a6caed5bfd69">cfg_documentum_retain_image_days</ac:inline-comment-marker> de la entidad CONFIGURATION</p></li><li local-id="99c65ee3c5f7"><p local-id="90ad11aa66b7">Est&aacute;n en el contenedor &ldquo;doonamis&rdquo;</p></li><li local-id="d33a0a4f5b9d"><p local-id="7effec3d8dd1">Se procesan un m&aacute;ximo de 500 im&aacute;genes por ejecuci&oacute;n</p></li></ul></li><li local-id="11a4fad402c9"><p local-id="b35daed60ceb">Eliminar im&aacute;genes. Para cada imagen encontrada en el paso anterior: </p><ul local-id="09c92b004140"><li local-id="0de578250689"><p local-id="41520c22cd1e">Conecta al Azure Blob Storage</p></li><li local-id="2b2809f4dd39"><p local-id="d6085e9fbaee">Busca el archivo f&iacute;sico (ej: abc-123.jpg)</p></li><li local-id="976ea92119bb"><p local-id="20fda691ef1f">ELIMINA el archivo del almacenamiento</p></li><li local-id="ea1be8cbce42"><p local-id="c4625f11acf1">Libera el espacio ocupado</p></li></ul></li><li local-id="a9e79c36c206"><p local-id="d329f9a54469">Marca la imagen como &quot;liberada&quot;. En la entidad IMAGE para cada imagen:</p><ol start="1" local-id="a3d7ff7eed7e"><li local-id="8bb2c5b8ebbf"><p local-id="a3acf2a118d0">Cambia image_released de false (0) a true (1)</p></li><li local-id="4e2b546fc264"><p local-id="5190d0c67444">No elimina el registro de la base de datos</p></li></ol></li></ol>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.5. NU_05 - Lecturas</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #172B4D;
+            margin-top: 1.5em;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .metadata {
+            background: #f4f5f7;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="metadata">
+        <strong>Página:</strong> 3.5. NU_05 - Lecturas<br>
+        <strong>ID:</strong> 1424949270<br>
+        <strong>Espacio:</strong> Y<br>
+        <strong>Versión:</strong> 4<br>
+        <strong>Última modificación:</strong> 2025-10-23T16:38:46.901Z
+    </div>
+    <hr>
+    <p>Muestra un listado de las lecturas/im&aacute;genes de contadores enviadas desde la app YoLeoGas, ya sea directamente o a trav&eacute;s de su integraci&oacute;n con la app de W&amp;T.</p><p>Se pueden buscar las lecturas por:</p><img src="images/image-20251021-105535.png" alt="image-20251021-105535.png" style="max-width: 100%;" /><ul><li><p><strong>Imagen: </strong>Miniatura de la imagen del contador (100px)</p></li><li><p><strong>Estado: </strong>Estado actual del procesamiento con tooltip de errores</p></li><li><p><strong>Origen</strong>: Canal por el que se ha enviado la lectura</p></li><li><p><strong>CUPS: </strong>C&oacute;digo del punto de suministro</p></li><li><p><strong>N&ordm; Serie: </strong>N&uacute;mero de serie del contador</p></li><li><p><strong>Valor Lectura: </strong>Valor final de la lectura tras el proceso</p></li><li><p><strong>Fecha proceso: </strong>Fecha y hora en la que se ha procesado la lectura por el OCR del servidor</p></li></ul><p>Existir&aacute; una opci&oacute;n para seleccionar los campos que se visualizan en el listado, pudiendo agregar.</p><ul><li><p>Nombre contador</p></li><li><p>Valor de lectura desde m&oacute;vil</p></li><li><p>Valor de lectura desde servidor</p></li><li><p>Valor de lectura que ha introducido manualmente el usuario</p></li><li><p>Confianza de la lectura m&oacute;vil</p></li><li><p>Confianza de la lectura servidor</p></li><li><p>Plataforma &rarr; valores Android o IOS. Versi&oacute;n del dispositivo desde el que se ha realizado la lectura</p></li><li><p>Modelo de tel&eacute;fono &rarr; dispositivo m&oacute;vil desde el que se ha realizado la lectura . Ejemplo Xiaomi 24040RN64Y, iPhone17,5</p></li><li><p>Versi&oacute;n de la aplicaci&oacute;n &rarr; versi&oacute;n de la aplicaci&oacute;n m&oacute;vil Yo Leo Gas desde la que se ha realizado la lectura. Ejemplo 19.4</p></li><li><p>Fecha de env&iacute;o a Backend &rarr; fecha en la que se ha realizado la lectura</p></li></ul><p /><p>Al lanzar la b&uacute;squeda, se recuperan todas los registros de la entidad IMAGE que cumplen los filtros indicados, teniendo en cuenta que:</p><ul><li><p>CUPS &rarr; se corresponde con prf_cups de la entidad PROFILE. La entidad PROFILE se relaciona con la entidad IMAGE a trav&eacute;s de prf_id, que est&aacute; en ambas entidades</p></li><li><p>Origen lectura &rarr; se corresponde con el campo image_input_channel de la entidad IMAGE y la relaci&oacute;n entres sus valores y los que se muestran es:</p></li></ul><table data-table-width="600" data-layout="center" ac:local-id="e218dedd-037a-46fd-a2d3-7d254a727626"><tbody><tr><td><p><strong>ENTIDAD IMAGE</strong></p></td><td><p><strong>ORIGEN EN PANTALLA</strong></p></td></tr><tr><td><p>MOBILE</p></td><td><p>YoLeoGas</p></td></tr><tr><td><p>MOBILEPROFILE</p></td><td><p>YoLeoGas</p></td></tr><tr><td><p>HERMES</p></td><td><p>Operaciones</p></td></tr></tbody></table><ul><li><p>Estado &rarr; se corresponde con el campo image_status_stage de la entidad IMAGE y la relaci&oacute;n entre sus valores y los que se muestran es:</p></li></ul><table data-table-width="600" data-layout="center" ac:local-id="165b0cc6-7b4e-49c5-b0d3-6949d56f5457"><tbody><tr><td><p><strong>ENTIDAD IMAGE</strong></p></td><td><p><strong>ESTADO EN PANTALLA</strong></p></td></tr><tr><td><p>PENDING_PROFILE_VALIDATION</p></td><td><p>Pendiente validaci&oacute;n perfil</p></td></tr><tr><td><p>&nbsp;PENDING_SERVER_PROCESSING</p></td><td><p>Pendiente OCR</p></td></tr><tr><td><p>SERVER_PROCESSING</p></td><td><p>Procesando OCR</p></td></tr><tr><td><p>PENDING_MANUAL_PROCESSING</p></td><td><p>Pendiente validaci&oacute;n manual</p></td></tr><tr><td><p>&nbsp;PENDING_SGC_PROCESSING</p></td><td><p>&nbsp;</p></td></tr><tr><td><p>SEND_TO_SGC</p></td><td><p>&nbsp;</p></td></tr><tr><td><p>PROCESSED_OK</p></td><td><p>Procesada</p></td></tr><tr><td><p>DISCARDED</p></td><td><p>Descartada</p></td></tr><tr><td><p>PROCESSED_HERMES</p></td><td><p>Procesada</p></td></tr></tbody></table><ul><li><p>Recepci&oacute;n Desde/Hasta &rarr; se corresponde con image_date_processed_mobile de la entidad IMAGE</p></li><li><p>N&ordm; Serie &rarr; se corresponde con prf_meter_serial_value_server_id o prf_meter_serial_value_manual (si se ha informado) de la entidad PROFILE</p></li><li><p>Valor Lectura &rarr; se corresponde con image_meter_reading_value_server o image_meter_reading_value_manual (si se ha informado) de la entidad IMAGE</p></li><li><p>Fecha proceso &rarr;  se corresponde con image_date_processed_server_reading_start de la entidad IMAGE</p></li><li><p>Nombre contador &rarr; se corresponde con prf_name de la entidad PROFILE</p></li></ul><ul><li><p>Valor de lectura desde m&oacute;vil &rarr;  se corresponde con image_meter_reading_value_mobil de la entidad IMAGE</p></li><li><p>Valor de lectura desde servidor&rarr;  se corresponde con image_meter_reading_value_server de la entidad IMAGE</p></li><li><p>Valor de lectura que ha introducido manualmente el usuario&rarr;  se corresponde con image_meter_reading_value_manual de la entidad IMAGE</p></li><li><p>Confianza de la lectura m&oacute;vil&rarr;  se corresponde con image_meter_reading_confidence_mobile de la entidad IMAGE</p></li><li><p>Confianza de la lectura servidor&rarr;  se corresponde con image_meter_reading_confidence_serverde la entidad IMAGE</p></li><li><p>Plataforma &rarr; se corresponde con platform de la entidad IMAGE</p></li><li><p>Modelo de tel&eacute;fono &rarr; se corresponde con phone_model de la entidad IMAGE</p></li><li><p>Versi&oacute;n de la aplicaci&oacute;n &rarr; se corresponde con app_version de la entidad IMAGE</p></li><li><p>Fecha de env&iacute;o a Backend &rarr; fse corresponde con image_date_processed_mobile de la entidad IMAGE</p></li></ul><p /><h3>Acciones del Usuario</h3><p>Adem&aacute;s, en la pantalla el usuario puede realizar las siguientes acciones:</p><ul><li><p><strong>Limpiar: </strong>Resetear todos los filtros</p></li><li><p><strong>Paginaci&oacute;n: </strong>Navegar entre p&aacute;ginas (Primera, Anterior, Siguiente, &Uacute;ltima)</p></li><li><p><strong>Ver imagen: </strong>Click para ver imagen completa</p></li><li><p><strong>Modificaci&oacute;n de columnas</strong>: A&ntilde;adir / Eliminar campos a la visualizaci&oacute;n</p></li></ul>
+</body>
+</html>

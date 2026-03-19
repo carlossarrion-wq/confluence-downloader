@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación Técnica - API Rest</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #172B4D;
+            margin-top: 1.5em;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .metadata {
+            background: #f4f5f7;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="metadata">
+        <strong>Página:</strong> Documentación Técnica - API Rest<br>
+        <strong>ID:</strong> 1449787420<br>
+        <strong>Espacio:</strong> Y<br>
+        <strong>Versión:</strong> 2<br>
+        <strong>Última modificación:</strong> 2025-10-23T14:58:31.450Z
+    </div>
+    <hr>
+    <h2>📋 Informaci&oacute;n General</h2><h3>Tipo de Proyecto</h3><p><strong>API REST Backend</strong> desarrollada en <strong>C# .NET 8.0</strong> para el sistema de gesti&oacute;n de lecturas de contadores de gas YoleoGas. Esta API forma parte de la arquitectura de microservicios del ecosistema YoleoGas, proporcionando servicios de backoffice para la gesti&oacute;n y validaci&oacute;n de lecturas y perfiles de contadores.</p><h3>Prop&oacute;sito</h3><p>Sistema de gesti&oacute;n empresarial para validaci&oacute;n manual de lecturas OCR, administraci&oacute;n de perfiles de contadores, generaci&oacute;n de informes estad&iacute;sticos y gesti&oacute;n de im&aacute;genes asociadas a las lecturas.</p><hr /><h2>🛠️ Stack Tecnol&oacute;gico</h2><h3>Framework y Runtime</h3><ul><li><p><strong>.NET 8.0</strong> - Framework principal</p></li><li><p><a href="http://ASP.NET" data-card-appearance="inline">http://ASP.NET</a> <strong> Core Web API</strong> - Framework web para APIs REST</p></li><li><p><strong>C# 12</strong> - Lenguaje de programaci&oacute;n</p></li></ul><h3>Base de Datos y ORM</h3><ul><li><p><strong>Microsoft SQL Server</strong> - Base de datos principal</p></li><li><p><strong>Entity Framework Core 8.0.11</strong> - ORM para acceso a datos</p></li><li><p><strong>Entity Framework Core Design &amp; Tools</strong> - Herramientas de desarrollo y migraciones</p></li></ul><h3>Dependencias Principales</h3><ac:structured-macro ac:name="code" ac:schema-version="1" ac:macro-id="9cdeb083-58ea-4ddc-a816-51bb17e31b47"><ac:parameter ac:name="breakoutMode">wide</ac:parameter><ac:parameter ac:name="breakoutWidth">760</ac:parameter><ac:plain-text-body><![CDATA[<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.11" />
+<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.11" />
+<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.11" />
+<PackageReference Include="AutoMapper" Version="12.0.1" />
+<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+<PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="8.0.11" />
+<PackageReference Include="Azure.Security.KeyVault.Secrets" Version="4.5.0" />
+<PackageReference Include="Azure.Identity" Version="1.11.4" />
+<PackageReference Include="Azure.Storage.Blobs" Version="12.19.1" />
+<PackageReference Include="System.Drawing.Common" Version="8.0.0" />
+]]></ac:plain-text-body></ac:structured-macro><h3>Servicios Azure</h3><ul><li><p><strong>Azure Key Vault</strong> - Gesti&oacute;n segura de secretos y credenciales</p></li><li><p><strong>Azure Blob Storage</strong> - Almacenamiento de im&aacute;genes de contadores</p></li><li><p><strong>Azure App Service</strong> - Hosting y despliegue</p></li><li><p><strong>Azure Managed Identity</strong> - Autenticaci&oacute;n sin credenciales</p></li></ul><hr /><h2>🏗️ Arquitectura del Sistema</h2><h3>Patr&oacute;n Arquitect&oacute;nico</h3><ul><li><p><strong>API REST</strong> con arquitectura en capas</p></li><li><p><strong>Repository Pattern</strong> para acceso a datos</p></li><li><p><strong>Dependency Injection</strong> nativo de .NET</p></li><li><p><strong>Service Layer</strong> para l&oacute;gica de negocio</p></li></ul><h3>Estructura del Proyecto</h3><ac:structured-macro ac:name="code" ac:schema-version="1" ac:macro-id="4423aa21-47ca-45cf-bd34-1b53e0e43bd3"><ac:parameter ac:name="breakoutMode">wide</ac:parameter><ac:parameter ac:name="breakoutWidth">760</ac:parameter><ac:plain-text-body><![CDATA[yoleogas-backoffice-api/
+├── Controllers/           # Controladores REST API
+│   ├── ConfigurationController.cs
+│   ├── DistributorConfigurationController.cs
+│   ├── HealthController.cs
+│   ├── ImagenesController.cs
+│   ├── InformeClusterController.cs
+│   ├── InformeGestionController.cs
+│   ├── InformesController.cs
+│   ├── LecturasController.cs
+│   ├── PerfilesController.cs
+│   └── RejectionReasonsController.cs
+├── Models/               # Modelos de datos
+│   ├── DTOs/            # Data Transfer Objects
+│   ├── Entities/        # Entidades de base de datos
+│   ├── EstadoConfigModel.cs
+│   └── MappingProfile.cs
+├── Services/            # Capa de servicios
+│   ├── Interfaces/      # Contratos de servicios
+│   └── Implementations/ # Implementaciones de servicios
+├── Data/               # Contexto de base de datos
+│   └── YoleoGasDbContext.cs
+├── Constants/          # Constantes de aplicación
+├── Utils/             # Utilidades
+└── Properties/        # Configuración de lanzamiento
+]]></ac:plain-text-body></ac:structured-macro><hr /><h2>🌍 Configuraci&oacute;n de Entornos</h2><h3>Desarrollo</h3><ul><li><p><strong>Swagger UI</strong>: <a href="https://api-yoleogas-des.nedgia.es/swagger/index.html">https://api-yoleogas-des.nedgia.es/swagger/index.html</a></p></li><li><p><strong>OpenAPI JSON</strong>: <a href="https://api-yoleogas-des.nedgia.es/swagger/v1/swagger.json">https://api-yoleogas-des.nedgia.es/swagger/v1/swagger.json</a></p></li></ul><h3>Integraci&oacute;n</h3><ul><li><p><strong>Swagger UI</strong>: <a href="https://api-yoleogas-pre.nedgia.es/swagger/index.html">https://api-yoleogas-pre.nedgia.es/swagger/index.html</a></p></li><li><p><strong>OpenAPI JSON</strong>: <a href="https://api-yoleogas-pre.nedgia.es/swagger/v1/swagger.json">https://api-yoleogas-pre.nedgia.es/swagger/v1/swagger.json</a></p></li></ul><h3>Producci&oacute;n</h3><ul><li><p><strong>Swagger UI</strong>: <a href="https://api-yoleogas.nedgia.es/swagger/index.html">https://api-yoleogas.nedgia.es/swagger/index.html</a></p></li><li><p><strong>OpenAPI JSON</strong>: <a href="https://api-yoleogas.nedgia.es/swagger/v1/swagger.json">https://api-yoleogas.nedgia.es/swagger/v1/swagger.json</a></p></li></ul><hr /><h2>🔐 Seguridad</h2><h3>Gesti&oacute;n de Secretos</h3><ul><li><p>Todos los accesos y passwords a elementos de terceros est&aacute;n guardados en almacenecs de claves Azure.</p></li><li><p>Las APIs tienen configuraci&oacute;n CORS Activa para solo permitir llamadas desde los frontales relacionados con cada entorno.</p></li><li><p>El API est&aacute; securizado por EntraID d&oacute;nde se definen los usuarios y roles asignados a la aplicaci&oacute;n.</p></li></ul><hr /><h2>🔌 Integraci&oacute;n con Terceros</h2><h3>Azure Services</h3><ol start="1"><li><p><strong>Azure Key Vault</strong></p><ul><li><p>Gesti&oacute;n centralizada de secretos</p></li><li><p>Autenticaci&oacute;n via Managed Identity</p></li><li><p>Resoluci&oacute;n autom&aacute;tica de connection strings</p></li></ul></li><li><p><strong>Azure Blob Storage</strong></p><ul><li><p>Almacenamiento de im&aacute;genes de contadores</p></li><li><p>Mock service disponible para desarrollo</p></li><li><p>Configuraci&oacute;n condicional seg&uacute;n entorno</p></li></ul></li><li><p><strong>Azure App Service</strong></p><ul><li><p>Hosting de la aplicaci&oacute;n</p></li><li><p>Health checks integrados</p></li><li><p>Configuraci&oacute;n de variables de entorno</p></li></ul></li></ol><h3>Servicios Internos</h3><ul><li><p><strong>KeyVaultService</strong>: Acceso seguro a secretos</p></li><li><p><strong>BlobStorageService</strong>: Gesti&oacute;n de im&aacute;genes</p></li><li><p><strong>MockBlobStorageService</strong>: Simulaci&oacute;n para desarrollo</p></li><li><p><strong>BuildInfoService</strong>: Informaci&oacute;n de versi&oacute;n y build</p></li></ul><hr /><h2>🚀 API Endpoints Principales</h2><h3>Gesti&oacute;n de Lecturas</h3><ul><li><p><code>GET /api/v1/lecturas</code> - Lista paginada con filtros</p></li><li><p><code>GET /api/v1/lecturas/{id}</code> - Detalle de lectura</p></li><li><p><code>PUT /api/v1/lecturas/{id}</code> - Actualizar lectura</p></li><li><p><code>POST /api/v1/lecturas/{id}/validar</code> - Validar lectura</p></li></ul><h3>Gesti&oacute;n de Perfiles</h3><ul><li><p><code>GET /api/v1/perfiles</code> - Lista paginada con filtros</p></li><li><p><code>GET /api/v1/perfiles/{id}</code> - Detalle de perfil</p></li><li><p><code>PUT /api/v1/perfiles/{id}</code> - Actualizar perfil</p></li><li><p><code>POST /api/v1/perfiles/{id}/validar</code> - Validar perfil</p></li></ul><h3>Gesti&oacute;n de Im&aacute;genes</h3><ul><li><p><code>GET /api/v1/imagenes/{id}</code> - Obtener imagen</p></li></ul><h3>Informes y Estad&iacute;sticas</h3><ul><li><p><code>GET /api/v1/informes/cluster</code> - Informes de cluster</p></li><li><p><code>GET /api/v1/informes/gestion</code> - Informes de gesti&oacute;n</p></li><li><p><code>GET /api/v1/lecturas/estadisticas</code> - Estad&iacute;sticas de lecturas</p></li><li><p><code>GET /api/v1/perfiles/estadisticas</code> - Estad&iacute;sticas de perfiles</p></li></ul><h3>Configuraci&oacute;n</h3><ul><li><p><code>GET /api/v1/configuration</code> - Configuraci&oacute;n global</p></li><li><p><code>GET /api/v1/distributor-configuration</code> - Configuraci&oacute;n por distribuidor</p></li></ul><h3>Health Checks</h3><ul><li><p><code>GET /health</code> - Health check b&aacute;sico</p></li><li><p><code>GET /api/v1/health</code> - Health check detallado</p></li><li><p><code>POST /api/v1/health/database-connection</code> - Validaci&oacute;n completa de BD</p></li></ul><hr /><h2>🏥 Health Checks y Monitoreo</h2><h3>Health Checks Disponibles</h3><p>Se habilitan tres servicios de Health Check funcional que servir&aacute;n para el alertado de funcionamiento de la infraestructura.</p><ol start="1"><li><p><strong>Basic Health Check</strong> (<code>/health</code>)</p><ul><li><p>Endpoint b&aacute;sico de infraestructura</p></li><li><p>Verificaci&oacute;n r&aacute;pida de estado de la API</p></li></ul></li><li><p><strong>Detailed Health Check</strong> (<code>/api/v1/health</code>)</p><ul><li><p>Informaci&oacute;n detallada del sistema</p></li><li><p>Verificaci&oacute;n de servicios cr&iacute;ticos</p></li></ul></li><li><p><strong>Database Connection Health Check</strong> (<code>/api/v1/health/database-connection</code>)</p><ul><li><p>Validaci&oacute;n completa de conectividad a BD</p></li><li><p>Fallback autom&aacute;tico Key Vault &rarr; App Settings</p></li><li><p>M&eacute;tricas de tiempo de respuesta por paso</p></li></ul></li></ol><hr /><h2>🧪 Testing</h2><h3>Estructura de Tests</h3><ac:structured-macro ac:name="code" ac:schema-version="1" ac:macro-id="34d8afd2-45cb-42f1-8664-922bd42fad09"><ac:parameter ac:name="breakoutMode">wide</ac:parameter><ac:parameter ac:name="breakoutWidth">760</ac:parameter><ac:plain-text-body><![CDATA[yoleogas-backoffice-api.E2ETests/
+├── Infrastructure/
+│   └── ApiClient.cs
+├── Models/
+│   └── LecturaDto.cs
+├── Tests/
+│   ├── HealthE2ETests.cs
+│   ├── LecturasE2ETests.cs
+│   └── PerfilesE2ETests.cs
+└── manual-testing.http
+]]></ac:plain-text-body></ac:structured-macro><h3>Tipos de Tests Disponibles</h3><ul><li><p><strong>Unit Tests</strong>: Tests unitarios para servicios y controladores</p></li><li><p><strong>E2E Tests</strong>: Tests end-to-end para flujos completos</p></li><li><p><strong>Integration Tests</strong>: Tests de integraci&oacute;n con base de datos</p></li><li><p><strong>Manual Testing</strong>: Archivos <code>.http</code> para testing manual</p></li></ul><hr /><p><strong>Documento generado</strong>: 23/10/2025<br /><strong>Versi&oacute;n</strong>: 1.0<br /><strong>Autor</strong>: Equipo de Desarrollo YoLeoGas</p>
+</body>
+</html>

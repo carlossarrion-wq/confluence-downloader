@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.4. NU_04 - Validación de perfiles</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #172B4D;
+            margin-top: 1.5em;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .metadata {
+            background: #f4f5f7;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="metadata">
+        <strong>Página:</strong> 3.4. NU_04 - Validación de perfiles<br>
+        <strong>ID:</strong> 1426096153<br>
+        <strong>Espacio:</strong> Y<br>
+        <strong>Versión:</strong> 6<br>
+        <strong>Última modificación:</strong> 2025-11-20T18:11:05.336Z
+    </div>
+    <hr>
+    <p>Accediendo a la opci&oacute;n de 'Validaci&oacute;n de perfiles' el usuario puede consultar todos los perfiles que est&aacute;n pendientes de validar porque no se ha podido crear correctamente el perfil. Son los perfiles que cumplen que en la entidad PROFILE el campo prf_status_stage tiene el valor PENDING_MANUAL_PROCESSING.</p><p>El perfil se crea en la primera lectura de contador enviada por un dispositivo m&oacute;vil ya que adem&aacute;s de la informaci&oacute;n de la lectura, se est&aacute; validando el n&uacute;mero de serie reconocido por el OCR. Si esta validaci&oacute;n no se puede realizar, el perfil queda pendiente de validaci&oacute;n (ver en el DF de backend, apartado NU_01 - Ciclo de vida de las lecturas).</p><p>Al entrar en la pantalla se muestra un n&uacute;mero con la cantidad de perfiles pendientes de validar y el perfil pendiente de validar m&aacute;s antiguo que hay en el sistema.</p><p>Adem&aacute;s, hay que tener en cuenta el rol del usuario:</p><ul><li><p>Validador &rarr; ver&aacute; todos los perfiles pendientes de validar y no tienen la marca de supervisi&oacute;n (de la entidad PROFILE campo prf_manual_supervision=0)</p></li><li><p>Manager &rarr; ver&aacute; solo los perfiles pendientes de validar con la marca de supervisi&oacute;n (de la entidad PROFILE campo prf_manual_supervision=1)</p></li><li><p>Administrador &rarr; ver&aacute; todos los perfiles pendientes de validar, independientemente de si est&aacute;n marcados para supervisi&oacute;n o no</p></li></ul><img src="images/image-20251027-131523.png" alt="image-20251027-131523.png" style="max-width: 100%;" /><p style="margin-left: 30.0px;">Si se pulsa el bot&oacute;n &ldquo;Confirmar rechazo&rdquo; ,</p><p style="margin-left: 60.0px;">-De la entidad PROFILE se actualiza:</p><p style="margin-left: 90.0px;"> pfr_status_stage &rarr; pasa a tener el valor DISCARDED</p><p style="margin-left: 90.0px;">prf_status_result_manual &rarr; pasa a tener el valor NOK</p><p style="margin-left: 60.0px;">-De la entidad IMAGE se actualiza: </p><p style="margin-left: 90.0px;">image_status_stage &rarr; pasa a tener el valor DISCARDED</p><p style="margin-left: 90.0px;">image_status_result_manual &rarr; pasa a tener el valor NOK </p><p style="margin-left: 90.0px;">image_date_processed_manual &rarr; fecha en la que ha rechazado</p><p style="margin-left: 30.0px;">Si se pulsa el bot&oacute;n &ldquo;Cancelar&rdquo;, no se hace nada.</p><p style="margin-left: 30.0px;">Si se ha rechazado el perfil y el cliente consulta la lectura en la app, la ver&aacute; con estado &ldquo;Descartada&rdquo;.</p><ul><li><p>Bot&oacute;n &ldquo;Enviar a Supervisi&oacute;n&rdquo; &rarr; &uacute;nicamente aparecer&aacute; a usuarios con rol Validador y si se pulsa, el perfil solamente lo ver&aacute;n los usuarios con rol Manager. Cuando se les muestre a los usuarios Administradores, se les destacar&aacute; que son unas im&aacute;genes que han sido saltadas para supervisi&oacute;n.</p><ul><li><p>En la entidad PROFILE el campo prf_manual_supervision queda informado con valor 1. </p></li></ul></li></ul>
+</body>
+</html>

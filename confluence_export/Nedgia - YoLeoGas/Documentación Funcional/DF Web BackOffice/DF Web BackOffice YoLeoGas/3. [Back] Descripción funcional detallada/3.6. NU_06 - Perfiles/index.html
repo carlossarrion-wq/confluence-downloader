@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.6. NU_06 - Perfiles</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #172B4D;
+            margin-top: 1.5em;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .metadata {
+            background: #f4f5f7;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="metadata">
+        <strong>Página:</strong> 3.6. NU_06 - Perfiles<br>
+        <strong>ID:</strong> 1425670161<br>
+        <strong>Espacio:</strong> Y<br>
+        <strong>Versión:</strong> 2<br>
+        <strong>Última modificación:</strong> 2025-10-23T16:38:14.431Z
+    </div>
+    <hr>
+    <p>La pantalla de Perfiles permite visualizar los perfiles de contadores de gas que han sido procesados por el sistema YoLeoGas.</p><p>Su funcionamiento es equivalente a la pantalla de visualizaci&oacute;n de lecturas, cambiando el contenido funcional pero manteniendo una l&oacute;gica de comportamiento similar para facilitar el trabajo del usuario.</p><p>Se pueden buscar los perfiles por:</p><img src="images/image-20251023-161502.png" alt="image-20251023-161502.png" style="max-width: 100%;" /><ul><li><p><strong>CUPS</strong> &rarr; CUPS espec&iacute;fico de 20 d&iacute;gitos o c&oacute;digo parcial. Se recomienda el uso de c&oacute;digos completos para mejorar el rendimiento</p></li><li><p><strong>Origen perfil</strong> &rarr;  los valores posibles son</p><ul><li><p>YoLeoGas, perfiles creados desde la app YoLeoGas</p></li><li><p>Operaciones. perfiles creados desde la app W&amp;T</p></li><li><p>Todos</p></li></ul></li><li><p><strong>Estado</strong> &rarr; los valores posibles son: Pendiente validaci&oacute;n, Validaci&oacute;n manual, Procesado, Descartado, Todos lo estados</p></li><li><p><strong>Creaci&oacute;n Desde/Hasta</strong>: Rango de fechas desde / hasta con selector de calendario y periodo predefinido inicialmente de una semana. Se avisar&aacute; al usuario si el rango de fechas seleccionado es amplio.</p></li></ul><p>Tras informar los criterios, ya se realiza la consulta y la tabla de resultados se actualiza autom&aacute;ticamente.</p><p>En la tabla de resultados se muestra la siguiente informaci&oacute;n:</p><img src="images/image-20251023-162331.png" alt="image-20251023-162331.png" style="max-width: 100%;" /><ul><li><p><strong>Imagen: </strong>Miniatura de la imagen del contador (100px)</p></li><li><p><strong>Estado: </strong>Estado actual del procesamiento con tooltip de errores</p></li><li><p><strong>CUPS: </strong>C&oacute;digo del punto de suministro</p></li><li><p><strong>N&ordm; Serie: </strong>N&uacute;mero de serie del contador</p></li><li><p><strong>Nombre del contador: </strong>nombre del contador creado por el cliente.</p></li><li><p><strong>Fecha Creaci&oacute;n: </strong>Fecha y hora en la que se ha creado el perfil</p></li></ul><p>A diferencia de la pantalla de lecturas, &uacute;nicamente mostrar&aacute; un registro por perfil. No mostrar&aacute; todas las lecturas recibidas.</p><p>Existir&aacute; una opci&oacute;n para seleccionar los campos que se visualizan en el listado.</p><p /><p>Al lanzar la b&uacute;squeda, se recuperan todas los registros de la entidad PROFILE que cumplen los filtros indicados, teniendo en cuenta que:</p><ul><li><p>CUPS &rarr; se corresponde con prf_cups de la entidad PROFILE. </p></li><li><p>Origen perfil&rarr; se corresponde con el campo prf_image_input_channel de la entidad PROFILE y la relaci&oacute;n entres sus valores y los que se muestran es:</p></li></ul><table data-table-width="600" data-layout="center" ac:local-id="e218dedd-037a-46fd-a2d3-7d254a727626"><tbody><tr><td><p><strong>ENTIDAD PROFILE</strong></p></td><td><p><strong>ORIGEN EN PANTALLA</strong></p></td></tr><tr><td><p>MOBILE</p></td><td><p>YoLeoGas</p></td></tr><tr><td><p>HERMES</p></td><td><p>Operaciones</p></td></tr></tbody></table><ul><li><p>Estado &rarr; se corresponde con el campo prf_status_stage de la entidad PROFILE y la relaci&oacute;n entre sus valores y los que se muestran es:</p></li></ul><table data-table-width="600" data-layout="center" ac:local-id="165b0cc6-7b4e-49c5-b0d3-6949d56f5457"><tbody><tr><td><p><strong>ENTIDAD PROFILE </strong></p></td><td><p><strong>ESTADO EN PANTALLA</strong></p></td></tr><tr><td><p>&nbsp;PENDING_SERVER_PROCESSING</p></td><td><p>Activo</p></td></tr><tr><td><p>PENDING_IMAGE_PROCESSING</p></td><td><p>Activo</p></td></tr><tr><td><p>PENDING_MANUAL_PROCESSING</p></td><td><p>Pendiente validaci&oacute;n</p></td></tr><tr><td><p>PROCESSED</p></td><td><p>Validado</p></td></tr><tr><td><p>DISCARDED</p></td><td><p>Rechazado</p></td></tr></tbody></table><ul><li><p>Fecha creaci&oacute;n &rarr; se corresponde con prf_creation_date de la entidad PROFILE </p></li><li><p>N&ordm; Serie &rarr; se corresponde con prf_meter_serial_value_server_id o prf_meter_serial_value_manual (si se ha informado) de la entidad PROFILE</p></li><li><p>Nombre contador &rarr; se corresponde con prf_name de la entidad PROFILE</p></li></ul><p /><h3>Acciones del Usuario</h3><p>En la pantalla, el usuario puede realizar las siguientes acciones:</p><ul><li><p><strong>Limpiar: </strong>Resetear todos los filtros</p></li><li><p><strong>Paginaci&oacute;n: </strong>Navegar entre p&aacute;ginas (Primera, Anterior, Siguiente, &Uacute;ltima)</p></li><li><p><strong>Ver imagen: </strong>Click para ver imagen completa</p></li><li><p><strong>Modificaci&oacute;n de columnas</strong>: A&ntilde;adir / Eliminar campos a la visualizaci&oacute;n.</p></li></ul>
+</body>
+</html>

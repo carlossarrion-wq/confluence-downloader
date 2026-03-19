@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.3. NU_03 - Validación de lecturas / imágenes</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #172B4D;
+            margin-top: 1.5em;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .metadata {
+            background: #f4f5f7;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="metadata">
+        <strong>Página:</strong> 3.3. NU_03 - Validación de lecturas / imágenes<br>
+        <strong>ID:</strong> 1425047567<br>
+        <strong>Espacio:</strong> Y<br>
+        <strong>Versión:</strong> 5<br>
+        <strong>Última modificación:</strong> 2025-11-20T18:16:10.981Z
+    </div>
+    <hr>
+    <p>Una vez dentro de la aplicaci&oacute;n, accediendo a la opci&oacute;n de 'Validaci&oacute;n de Lecturas' el usuario puede consultar todas las lecturas que est&aacute;n pendientes de validar ( son aquellas que en la entidad IMAGE el campo image_status_stage tiene el valor PENDING_MANUAL_PROCESSING) por los siguientes motivos:</p><ul><li><p>la imagen recibida del m&oacute;vil ha sido rechazada por el OCR del servidor </p></li><li><p>la imagen ya ha pasado por el sistema alguna vez (bien manual o autom&aacute;ticamente) y al llegar a Zeus, ha sido rechazada. En este caso se mostrar&aacute; el error que el sistema ha devuelto, y se permitir&aacute; al usuario de la aplicaci&oacute;n modificar la lectura. En caso que acabe modificando la lectura, se volver&iacute;a a encolar para enviarse de nuevo.</p></li></ul><p>Al entrar en la pantalla se muestra un n&uacute;mero con la cantidad de lecturas pendientes de validar y la lectura pendiente de validar m&aacute;s antigua que hay en el sistema,</p><p>Adem&aacute;s, hay que tener en cuenta el rol del usuario:</p><ul><li><p>Validador &rarr; ver&aacute; todas las lecturas pendientes de validar y no tienen la marca de supervisi&oacute;n (de la entidad IMAGE campo image_manual_supervision=0)</p></li><li><p>Manager &rarr; ver&aacute; solo las lecturas pendientes de validar con la marca de supervisi&oacute;n (de la entidad IMAGE campo image_manual_supervision=1)</p></li><li><p>Administrador &rarr; ver&aacute; todas las lecturas pendientes de validar, independientemente de si est&aacute;n marcadas para supervisi&oacute;n o no</p></li></ul><img src="images/image-20251021-103711.png" alt="image-20251021-103711.png" style="max-width: 100%;" /><p /><p>Para cada lectura pendiente de validar se muestra:</p><ul><li><p>Fecha en la que se ha realizado la fotograf&iacute;a</p></li><li><p>Botones para ampliar y/o girar la fotograf&iacute;a</p></li><li><p>La imagen de la lectura realizada por el cliente</p></li><li><p>Si la imagen ha sido enviada para supervisi&oacute;n, se mostrar&aacute; un mensaje indic&aacute;ndolo bajo la imagen que solo lo ver&aacute;n los usuarios con rol Administrador o Manager</p></li><li><p>CUPS identificador del punto de suministro</p></li><li><p>N&uacute;mero de serie del contador</p></li><li><p>Lectura enviada m&oacute;vil: lectura reconocida por el OCR en el dispositivo. Si el cliente ha editado la lectura antes de enviarla, se mostrar&aacute; el texto &ldquo;Editada por usuario&rdquo; para que el usuario tenga esta informaci&oacute;n</p></li></ul><p style="margin-left: 30.0px;">Tambi&eacute;n se muestra una opci&oacute;n de copiar el valor en el campo de lectura manual para facilitar su edici&oacute;n en caso necesario.</p><ul><li><p>Bot&oacute;n &ldquo;Validar&rdquo; lectura enviada m&oacute;vil &rarr; el usuario al pulsarlo est&aacute; dando como correcta la lectura que se muestra en &ldquo;lectura enviada m&oacute;vil&rdquo;,  si ha visto que coincide con la imagen que se est&aacute; visualizando a la izquierda</p></li><li><p>Lectura OCR Servidor: lectura reconocida por el OCR en el servidor</p></li></ul><p style="margin-left: 30.0px;">Tambi&eacute;n se muestra una opci&oacute;n de copiar el valor en el campo de lectura manual para facilitar su edici&oacute;n en caso necesario.</p><ul><li><p>Bot&oacute;n &ldquo;Validar&rdquo; lectura OCR servidor &rarr; el usuario al pulsarlo est&aacute; dando como correcta la lectura que se muestra en &ldquo;lectura OCR servidor&rdquo; , si ha visto que coincide con la imagen que se est&aacute; visualizando a la izquierda</p></li><li><p>Lectura manual &rarr; por defecto, no hay nada informado en este campo. El usuario puede poner la lectura manualmente o copiar el valor de la lectura m&oacute;vil o lectura OCR con la opci&oacute;n de copiar que se facilita</p></li><li><p>Bot&oacute;n &ldquo;Confirmar &rarr; permite al usuario enviar la lectura manual introducida</p></li><li><p>Bot&oacute;n &ldquo;Rechazar lectura&rdquo; &rarr; permite al usuario rechazar la lectura en caso que la lectura no sea identificable</p><ul><li><p>De la entidad IMAGE se actualiza image_status_stage &rarr; pasa a tener el valor DISCARDED</p></li><li><p>Si se ha rechazado la lectura y el cliente la consulta en la app, la ver&aacute; con estado &ldquo;Descartada&rdquo;.</p></li></ul></li><li><p>Bot&oacute;n &ldquo;Saltar lectura&rdquo; &rarr; si la lectura que se presenta no la quiere validar el usuario, puede saltar a la siguiente pendiente pulsando este bot&oacute;n</p></li><li><p>Bot&oacute;n &ldquo;Enviar a Supervisi&oacute;n&rdquo; &rarr; &uacute;nicamente aparecer&aacute; a usuarios con rol Validador y si se pulsa, la lectura solamente la ver&aacute;n los usuarios con rol Manager. Cuando se les muestre a los usuarios Administradores, se les destacar&aacute; que son unas im&aacute;genes que han sido saltadas para supervisi&oacute;n.</p><ul><li><p>En la entidad IMAGE el campo image_manual_supervision queda informado con valor 1. </p></li></ul></li></ul><p /><p>Cuando el usuario valida la lectura o la confirma, la lectura pasa a ser enviada a la distribuidora  y de la entidad IMAGE se actualiza lo siguiente:</p><ul><li><p>image_status_stage &rarr; pasa a tener el valor PENDING_SGC_PROCESSING</p></li><li><p>image_date_processed_manual: fecha en la que ha validado manualmente la lectura</p></li><li><p>image_meter_reading_value_manual: valor de la lectura que se ha dado cuando se ha validado manualmente</p></li><li><p>user_id: usuario que ha validado manualmente la lectura</p></li></ul>
+</body>
+</html>

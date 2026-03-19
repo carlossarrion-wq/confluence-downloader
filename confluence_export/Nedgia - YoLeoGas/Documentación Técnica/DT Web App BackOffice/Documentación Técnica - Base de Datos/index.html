@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación Técnica - Base de Datos</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #172B4D;
+            margin-top: 1.5em;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .metadata {
+            background: #f4f5f7;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="metadata">
+        <strong>Página:</strong> Documentación Técnica - Base de Datos<br>
+        <strong>ID:</strong> 1449099289<br>
+        <strong>Espacio:</strong> Y<br>
+        <strong>Versión:</strong> 3<br>
+        <strong>Última modificación:</strong> 2025-10-23T15:11:06.735Z
+    </div>
+    <hr>
+    <h2>Modelo Conceptual de Datos</h2><h3>Visi&oacute;n General del Sistema</h3><p>El sistema YoleoGas gestiona el proceso completo de lectura de contadores de gas, desde la captura de im&aacute;genes por parte de t&eacute;cnicos de campo hasta la validaci&oacute;n manual por operadores de backoffice. El modelo de datos est&aacute; dise&ntilde;ado para soportar:</p><ul><li><p><strong>Procesamiento Multi-etapa</strong>: Mobile &rarr; OCR Server &rarr; Manual &rarr; SGC</p></li><li><p><strong>Multi-tenancy</strong>: Soporte para m&uacute;ltiples distribuidores de gas</p></li><li><p><strong>Trazabilidad Completa</strong>: Auditor&iacute;a de todos los cambios y procesos</p></li><li><p><strong>Gesti&oacute;n de Perfiles</strong>: Configuraci&oacute;n de contadores y modelos OCR</p></li><li><p><strong>Supervisi&oacute;n Jer&aacute;rquica</strong>: Diferentes niveles de acceso y validaci&oacute;n</p></li></ul><h3>Conceptos Fundamentales</h3><h4>1. <strong>Lectura de Contador (Image)</strong></h4><p>Representa una imagen de contador de gas capturada por un t&eacute;cnico, que pasa por m&uacute;ltiples etapas de procesamiento:</p><ul><li><p><strong>Mobile</strong>: Procesamiento inicial en dispositivo m&oacute;vil</p></li><li><p><strong>Server</strong>: Procesamiento OCR en servidor</p></li><li><p><strong>Manual</strong>: Validaci&oacute;n manual por operador</p></li><li><p><strong>SGC</strong>: Integraci&oacute;n con sistema de gesti&oacute;n comercial</p></li></ul><h4>2. <strong>Perfil de Contador (Profile)</strong></h4><p>Configuraci&oacute;n espec&iacute;fica de un contador de gas que incluye:</p><ul><li><p>Informaci&oacute;n del CUPS (C&oacute;digo Universal del Punto de Suministro)</p></li><li><p>Modelo de contador asociado</p></li><li><p>Historial de lecturas</p></li><li><p>Configuraci&oacute;n de notificaciones</p></li></ul><h4>3. <strong>Modelo OCR (Model)</strong></h4><p>Definici&oacute;n de las caracter&iacute;sticas visuales de un tipo de contador para el procesamiento OCR:</p><ul><li><p>Coordenadas de regiones de inter&eacute;s (contador, serie, c&oacute;digo de barras)</p></li><li><p>Par&aacute;metros de segmentaci&oacute;n</p></li><li><p>Configuraci&oacute;n de d&iacute;gitos</p></li></ul><h4>4. <strong>Distribuidor (Distributor)</strong></h4><p>Empresa distribuidora de gas que utiliza el sistema, permitiendo multi-tenancy.</p><hr /><h2>Descripci&oacute;n de Entidades</h2><h3>Entidades Principales</h3><h4><strong>IMAGE</strong> - Lecturas de Contadores</h4><p><strong>Prop&oacute;sito</strong>: Almacena las im&aacute;genes de contadores y su informaci&oacute;n de procesamiento a trav&eacute;s de todas las etapas.</p><p><strong>Campos Clave</strong>:</p><ul><li><p><code>image_id</code> (GUID): Identificador &uacute;nico de la imagen</p></li><li><p><code>prf_id</code> (GUID): Referencia al perfil del contador</p></li><li><p><code>image_container</code>, <code>image_blob</code>: Ubicaci&oacute;n de la imagen en Azure Blob Storage</p></li><li><p><code>image_status_stage</code>: Estado actual del procesamiento</p></li><li><p><code>image_meter_reading_value_*</code>: Valores de lectura en cada etapa</p></li><li><p><code>image_meter_reading_confidence_*</code>: Niveles de confianza OCR</p></li><li><p><code>image_manual_supervision</code>: Indica si requiere supervisi&oacute;n de administrador</p></li><li><p><code>dis_id</code>: Identificador del distribuidor (multi-tenancy)</p></li></ul><p><strong>Estados de Procesamiento</strong>:</p><ul><li><p><code>PENDING_MANUAL_PROCESSING</code>: Pendiente de validaci&oacute;n manual</p></li><li><p><code>PROCESSED_OK</code>: Procesado correctamente</p></li><li><p><code>PROCESSED_NOK</code>: Procesado con errores</p></li><li><p><code>SENT_TO_SGC</code>: Enviado al sistema comercial</p></li></ul><h4><strong>PROFILE</strong> - Perfiles de Contadores</h4><p><strong>Prop&oacute;sito</strong>: Configuraci&oacute;n y metadatos de cada contador de gas en el sistema.</p><p><strong>Campos Clave</strong>:</p><ul><li><p><code>prf_id</code> (GUID): Identificador &uacute;nico del perfil</p></li><li><p><code>prf_cups</code>: C&oacute;digo CUPS del punto de suministro</p></li><li><p><code>prf_name</code>: Nombre descriptivo del perfil</p></li><li><p><code>model_id</code>: Referencia al modelo OCR asociado</p></li><li><p><code>prf_last_reading</code>: &Uacute;ltima lectura v&aacute;lida</p></li><li><p><code>prf_meter_serial_value</code>: N&uacute;mero de serie del contador</p></li><li><p><code>prf_manual_supervision</code>: Requiere supervisi&oacute;n manual</p></li><li><p><code>prf_allow_notifications</code>: Configuraci&oacute;n de notificaciones</p></li><li><p><code>dis_id</code>: Distribuidor propietario</p></li></ul><h4><strong>MODEL</strong> - Modelos OCR</h4><p><strong>Prop&oacute;sito</strong>: Define las caracter&iacute;sticas visuales y par&aacute;metros de procesamiento para cada tipo de contador.</p><p><strong>Campos Clave</strong>:</p><ul><li><p><code>model_id</code> (GUID): Identificador &uacute;nico del modelo</p></li><li><p><code>model_numerical_id</code>: ID num&eacute;rico para referencia r&aacute;pida</p></li><li><p><code>model_provider_name</code>: Fabricante del contador</p></li><li><p><code>model_n_total_counter_digits</code>: N&uacute;mero total de d&iacute;gitos del contador</p></li><li><p><code>model_counter_box_point*</code>: Coordenadas de la regi&oacute;n del contador</p></li><li><p><code>model_id_box_point*</code>: Coordenadas de la regi&oacute;n del n&uacute;mero de serie</p></li><li><p><code>model_codebar_box_point*</code>: Coordenadas de la regi&oacute;n del c&oacute;digo de barras</p></li></ul><h4><strong>DISTRIBUTOR</strong> - Distribuidores</h4><p><strong>Prop&oacute;sito</strong>: Gesti&oacute;n multi-tenant del sistema para diferentes empresas distribuidoras.</p><p><strong>Campos Clave</strong>:</p><ul><li><p><code>dis_id</code> (INT): Identificador &uacute;nico del distribuidor</p></li><li><p><code>dis_name</code>: Nombre de la empresa distribuidora</p></li><li><p><code>dis_active</code>: Estado activo/inactivo</p></li><li><p><code>dis_registration_date</code>: Fecha de registro en el sistema</p></li></ul><h4><strong>OPERATOR</strong> - Operadores de Campo</h4><p><strong>Prop&oacute;sito</strong>: Informaci&oacute;n de los t&eacute;cnicos que capturan las im&aacute;genes con dispositivos m&oacute;viles.</p><p><strong>Campos Clave</strong>:</p><ul><li><p><code>oper_id</code> (GUID): Identificador &uacute;nico del operador</p></li><li><p><code>oper_operId</code>: C&oacute;digo de identificaci&oacute;n del operador</p></li><li><p><code>oper_name</code>: Nombre del operador</p></li><li><p><code>oper_last_image_date</code>: Fecha de la &uacute;ltima imagen capturada</p></li></ul><h3>Entidades de Configuraci&oacute;n</h3><h4><strong>CONFIGURATION</strong> - Configuraci&oacute;n Global</h4><p>Par&aacute;metros de configuraci&oacute;n del sistema a nivel global.</p><h4><strong>DISTRIBUTOR_CONFIGURATION</strong> - Configuraci&oacute;n por Distribuidor</h4><p>Configuraciones espec&iacute;ficas para cada distribuidor.</p><h4><strong>TIMES_CONFIGURATION</strong> - Configuraci&oacute;n de Tiempos</h4><p>Par&aacute;metros de tiempo para procesamiento y notificaciones.</p><h3>Entidades de Gesti&oacute;n</h3><h4><strong>REJECTION_REASON</strong> - Motivos de Rechazo</h4><p>Cat&aacute;logo de motivos por los cuales una lectura puede ser rechazada.</p><h4><strong>NOTIFICATION</strong> - Notificaciones</h4><p>Sistema de notificaciones para operadores y administradores.</p><h4><strong>LOG</strong> - Auditor&iacute;a</h4><p>Registro de eventos y cambios en el sistema para trazabilidad.</p><h3>Entidades Hist&oacute;ricas</h3><h4><strong>IMAGE_HIST</strong> - Historial de Im&aacute;genes</h4><p>Registro hist&oacute;rico de cambios en las im&aacute;genes procesadas.</p><h4><strong>PROFILE_HIST</strong> - Historial de Perfiles</h4><p>Registro hist&oacute;rico de cambios en los perfiles de contadores.</p><h4><strong>NOTIFICATION_HIST</strong> - Historial de Notificaciones</h4><p>Registro hist&oacute;rico de notificaciones enviadas.</p><hr /><h2>Diagrama Conceptual del Modelo de Datos</h2><ac:structured-macro ac:name="code" ac:schema-version="1" ac:macro-id="8ba02cb8-d442-4a6d-8c91-7055be45a394"><ac:parameter ac:name="breakoutMode">wide</ac:parameter><ac:parameter ac:name="breakoutWidth">760</ac:parameter><ac:plain-text-body><![CDATA[erDiagram
+    DISTRIBUTOR ||--o{ PROFILE : "owns"
+    DISTRIBUTOR ||--o{ IMAGE : "processes"
+    DISTRIBUTOR ||--o{ DISTRIBUTOR_CONFIGURATION : "configures"
+    
+    PROFILE ||--o{ IMAGE : "generates"
+    PROFILE }o--|| MODEL : "uses"
+    PROFILE }o--|| OPERATOR : "assigned_to"
+    
+    MODEL ||--o{ PROFILE : "defines"
+    
+    OPERATOR ||--o{ PROFILE : "manages"
+    OPERATOR ||--o{ IMAGE : "captures"
+    
+    IMAGE }o--|| REJECTION_REASON : "rejected_by"
+    
+    PROFILE ||--o{ PROFILE_HIST : "tracks_changes"
+    IMAGE ||--o{ IMAGE_HIST : "tracks_changes"
+    
+    NOTIFICATION }o--|| PROFILE : "notifies_about"
+    NOTIFICATION ||--o{ NOTIFICATION_HIST : "tracks_history"
+    
+    CONFIGURATION ||--o{ DISTRIBUTOR_CONFIGURATION : "extends"
+    TIMES_CONFIGURATION ||--o{ DISTRIBUTOR_CONFIGURATION : "timing_rules"
+    
+    %% Entidades Principales
+    DISTRIBUTOR {
+        int dis_id PK
+        nvarchar dis_name
+        bit dis_active
+        datetime dis_registration_date
+    }
+    
+    PROFILE {
+        uniqueidentifier prf_id PK
+        uniqueidentifier model_id FK
+        nvarchar prf_cups
+        nvarchar prf_name
+        nvarchar prf_last_reading
+        datetime prf_creation_date
+        bit prf_manual_supervision
+        int dis_id FK
+        uniqueidentifier oper_id FK
+    }
+    
+    IMAGE {
+        uniqueidentifier image_id PK
+        uniqueidentifier prf_id FK
+        nvarchar image_container
+        nvarchar image_blob
+        nvarchar image_status_stage
+        nvarchar image_meter_reading_value_mobile
+        nvarchar image_meter_reading_value_server
+        nvarchar image_meter_reading_value_manual
+        datetime image_creation_date
+        bit image_manual_supervision
+        int dis_id FK
+        uniqueidentifier user_id FK
+    }
+    
+    MODEL {
+        uniqueidentifier model_id PK
+        int model_numerical_id
+        varchar model_provider_name
+        int model_n_total_counter_digits
+        float model_counter_box_point0_x
+        float model_counter_box_point0_y
+        nvarchar model_input_channel
+    }
+    
+    OPERATOR {
+        uniqueidentifier oper_id PK
+        nvarchar oper_operId
+        nvarchar oper_name
+        datetime oper_last_image_date
+    }
+    
+    %% Entidades de Soporte
+    REJECTION_REASON {
+        uniqueidentifier rsn_id PK
+        nvarchar reason_description
+    }
+    
+    NOTIFICATION {
+        uniqueidentifier notification_id PK
+        uniqueidentifier prf_id FK
+        nvarchar notification_type
+        datetime notification_date
+    }
+    
+    %% Entidades de Configuración
+    CONFIGURATION {
+        nvarchar config_key PK
+        nvarchar config_value
+        nvarchar config_description
+    }
+    
+    DISTRIBUTOR_CONFIGURATION {
+        int dis_id FK
+        nvarchar config_key FK
+        nvarchar config_value
+    }
+    
+    TIMES_CONFIGURATION {
+        nvarchar time_key PK
+        int time_value_minutes
+        nvarchar time_description
+    }
+    
+    %% Entidades Históricas
+    PROFILE_HIST {
+        uniqueidentifier prf_hist_id PK
+        uniqueidentifier prf_id FK
+        datetime change_date
+        nvarchar change_type
+    }
+    
+    IMAGE_HIST {
+        uniqueidentifier img_hist_id PK
+        uniqueidentifier image_id FK
+        datetime change_date
+        nvarchar change_type
+    }
+    
+    NOTIFICATION_HIST {
+        uniqueidentifier notif_hist_id PK
+        uniqueidentifier notification_id FK
+        datetime sent_date
+        nvarchar status
+    }
+]]></ac:plain-text-body></ac:structured-macro><h3>Flujo de Datos Principal</h3><ac:structured-macro ac:name="code" ac:schema-version="1" ac:macro-id="0e83ea89-9742-44ce-bb6b-cfeb043a351f"><ac:parameter ac:name="breakoutMode">wide</ac:parameter><ac:parameter ac:name="breakoutWidth">760</ac:parameter><ac:plain-text-body><![CDATA[flowchart TD
+    A[Técnico captura imagen] --> B[IMAGE creada con estado MOBILE]
+    B --> C[Procesamiento OCR Server]
+    C --> D[IMAGE actualizada con lectura OCR]
+    D --> E{¿Requiere validación manual?}
+    E -->|Sí| F[PENDING_MANUAL_PROCESSING]
+    E -->|No| G[PROCESSED_OK]
+    F --> H[Operador valida manualmente]
+    H --> I[IMAGE actualizada con lectura manual]
+    I --> J{¿Requiere supervisión?}
+    J -->|Sí| K[Supervisor revisa]
+    J -->|No| L[PROCESSED_OK]
+    K --> L
+    G --> M[Envío a SGC]
+    L --> M
+    M --> N[SENT_TO_SGC]
+    
+    %% Actualización de Profile
+    N --> O[PROFILE actualizado con última lectura]
+    
+    %% Auditoría
+    B --> P[IMAGE_HIST registro]
+    I --> Q[IMAGE_HIST registro]
+    O --> R[PROFILE_HIST registro]
+]]></ac:plain-text-body></ac:structured-macro><h3>Proceso de Validaci&oacute;n de Perfiles</h3><p>El proceso de validaci&oacute;n de perfiles es fundamental para asegurar la correcta configuraci&oacute;n de los contadores de gas antes de que puedan procesar lecturas. Este flujo garantiza que cada perfil tenga la informaci&oacute;n necesaria y est&eacute; correctamente asociado con un modelo OCR.</p><ac:structured-macro ac:name="code" ac:schema-version="1" ac:macro-id="5c0df258-5061-4ef2-9b71-65f336189839"><ac:parameter ac:name="breakoutMode">wide</ac:parameter><ac:parameter ac:name="breakoutWidth">760</ac:parameter><ac:plain-text-body><![CDATA[flowchart TD
+    A[Creación de PROFILE] --> B[Validación de datos básicos]
+    B --> C{¿CUPS válido?}
+    C -->|No| D[Error: CUPS inválido]
+    C -->|Sí| N[Extracción de número de serie]
+    
+    N[Extracción de número de serie]
+    N --> O{¿Serie extraída correctamente?}
+    O -->|No| P[Estado: PENDING_MANUAL_PROCESSING]
+    O -->|Sí| Q[Validación de reglas de negocio]
+    
+    Q --> R{¿Reglas aplicadas?}
+    R -->|Error| S[Estado: PENDING_MANUAL_PROCESSING]
+    R -->|Éxito| T[Estado: PROCESSED_OK]
+    
+    %% Flujos de supervisión
+    P --> U{¿Requiere supervisión?}
+    S --> U
+    U -->|Sí| V[prf_manual_supervision = true]
+    U -->|No| W[Validación manual estándar]
+    
+    V --> X[Supervisor valida perfil]
+    W --> Y[Operador valida perfil]
+    
+    X --> Z[Perfil validado]
+    Y --> Z
+    
+    %% Estados finales
+    T --> AA[PROFILE activo y operativo]
+    Z --> AA
+    D --> AC[PROFILE rechazado]
+    
+    %% Auditoría
+    AA --> AD[PROFILE_HIST registro]
+    AB --> AE[PROFILE_HIST registro]
+    AC --> AF[PROFILE_HIST registro]
+    
+    %% Notificaciones
+    P --> AH[Notificación: Validación manual]
+    S --> AI[Notificación: Error en reglas]
+    
+    style A fill:#e1f5fe
+    style AA fill:#c8e6c9
+    style AB fill:#fff3e0
+    style AC fill:#ffcdd2
+    style V fill:#f3e5f5
+]]></ac:plain-text-body></ac:structured-macro><h4>Explicaci&oacute;n del Proceso de Validaci&oacute;n de Perfiles</h4><p>El proceso de validaci&oacute;n de perfiles en YoleoGas es un flujo cr&iacute;tico que asegura la correcta configuraci&oacute;n de cada contador de gas antes de que pueda procesar lecturas. Este proceso se ejecuta en varias etapas:</p><ol start="1"><li><p><strong>Validaci&oacute;n Inicial</strong></p></li></ol><ul><li><p>Se verifica que el c&oacute;digo CUPS sea v&aacute;lido y &uacute;nico en el sistema</p></li><li><p>Se validan los datos b&aacute;sicos del perfil (nombre, distribuidor, etc.)</p></li><li><p>Si hay errores en esta etapa, el perfil es rechazado inmediatamente</p></li></ul><ol start="2"><li><p><strong>Asignaci&oacute;n de Modelo OCR</strong></p></li></ol><ul><li><p>El sistema busca un modelo OCR compatible basado en las caracter&iacute;sticas del contador</p></li><li><p>Si no se encuentra un modelo autom&aacute;ticamente, el perfil queda en estado <code>PENDING_MODEL_ASSIGNMENT</code></p></li><li><p>Se valida la compatibilidad entre el modelo seleccionado y el tipo de contador</p></li></ul><ol start="3"><li><p><strong>Procesamiento OCR</strong></p></li></ol><ul><li><p>Se ejecuta el procesamiento OCR para extraer el n&uacute;mero de serie del contador</p></li><li><p>Si la extracci&oacute;n falla o tiene baja confianza, pasa a validaci&oacute;n manual</p></li><li><p>Se aplican las reglas de negocio espec&iacute;ficas del distribuidor</p></li></ul><ol start="4"><li><p><strong>Supervisi&oacute;n y Validaci&oacute;n Manual</strong></p></li></ol><ul><li><p>Los perfiles que requieren supervisi&oacute;n (<code>prf_manual_supervision = true</code>) son asignados a supervisores</p></li><li><p>Los perfiles est&aacute;ndar pueden ser validados por operadores regulares</p></li><li><p>Se registra toda la actividad en <code>PROFILE_HIST</code> para auditor&iacute;a</p></li></ul><ol start="5"><li><p><strong>Estados Finales</strong></p></li></ol><ul><li><p><strong>PROCESSED_OK</strong>: Perfil completamente validado y operativo</p></li><li><p><strong>PENDING_MODEL_ASSIGNMENT</strong>: Esperando asignaci&oacute;n de modelo OCR</p></li><li><p><strong>PENDING_MANUAL_PROCESSING</strong>: Requiere intervenci&oacute;n manual</p></li><li><p><strong>REJECTED</strong>: Perfil rechazado por errores cr&iacute;ticos</p></li></ul><p><strong>Caracter&iacute;sticas Clave del Proceso:</strong></p><ul><li><p><strong>Trazabilidad Completa</strong>: Cada cambio se registra en <code>PROFILE_HIST</code></p></li><li><p><strong>Notificaciones Autom&aacute;ticas</strong>: Se env&iacute;an alertas seg&uacute;n el estado del perfil</p></li><li><p><strong>Supervisi&oacute;n Jer&aacute;rquica</strong>: Diferentes niveles de validaci&oacute;n seg&uacute;n la complejidad</p></li><li><p><strong>Recuperaci&oacute;n de Errores</strong>: Posibilidad de reintento y correcci&oacute;n manual</p></li><li><p><strong>Multi-tenancy</strong>: Reglas espec&iacute;ficas por distribuidor aplicadas autom&aacute;ticamente</p></li></ul><p>Este proceso garantiza que solo los perfiles correctamente configurados puedan generar lecturas v&aacute;lidas, manteniendo la integridad del sistema y la calidad de los datos procesados.</p><h3>Proceso de Validaci&oacute;n de Lecturas</h3><p>El proceso de validaci&oacute;n de lecturas es el flujo principal del sistema YoleoGas, donde las im&aacute;genes capturadas por t&eacute;cnicos de campo pasan por m&uacute;ltiples etapas de procesamiento hasta convertirse en lecturas v&aacute;lidas para la distribuidora.</p><ac:structured-macro ac:name="code" ac:schema-version="1" ac:macro-id="1efd2e0a-24b3-4c28-94b5-664975478703"><ac:parameter ac:name="breakoutMode">wide</ac:parameter><ac:parameter ac:name="breakoutWidth">760</ac:parameter><ac:plain-text-body><![CDATA[flowchart TD
+    A[Técnico captura imagen] --> B[Creación de IMAGE]
+    B --> C[Validación inicial de imagen]
+    C --> D{¿Imagen válida?}
+    D -->|No| E[Error: Imagen corrupta/inválida]
+    D -->|Sí| F[Procesamiento Mobile]
+    
+    F --> G[Extracción de lectura móvil]
+    G --> H[Cálculo de confianza móvil]
+    H --> I{¿Confianza móvil > umbral?}
+    I -->|No| J[image_status_stage = MOBILE_LOW_CONFIDENCE]
+    I -->|Sí| K[image_status_stage = MOBILE_PROCESSED]
+    
+    J --> L[Procesamiento OCR Server]
+    K --> L
+    
+    L --> M[Extracción de lectura OCR]
+    M --> N[Cálculo de confianza por dígito]
+    N --> O[Validación contra perfil]
+    O --> P{¿Lectura coherente?}
+    P -->|No| Q[image_status_stage = SERVER_VALIDATION_FAILED]
+    P -->|Sí| R{¿Confianza OCR > umbral?}
+    
+    R -->|No| S[image_status_stage = PENDING_MANUAL_PROCESSING]
+    R -->|Sí| T[Validación de reglas de negocio]
+    
+    T --> U{¿Reglas aplicadas correctamente?}
+    U -->|Error| S
+    U -->|Éxito| V{¿Requiere supervisión?}
+    
+    V -->|Sí| W[image_manual_supervision = true]
+    V -->|No| X[image_status_stage = PROCESSED_OK]
+    
+    %% Flujo de validación manual
+    S --> Y{¿Requiere supervisión?}
+    Y -->|Sí| W
+    Y -->|No| Z[Asignación a operador]
+    
+    W --> AA[Asignación a supervisor]
+    Z --> BB[Operador valida lectura]
+    AA --> CC[Supervisor valida lectura]
+    
+    BB --> DD[Actualización de lectura manual]
+    CC --> DD
+    
+    DD --> EE{¿Lectura aceptada?}
+    EE -->|No| FF[image_status_result_manual = NOK]
+    EE -->|Sí| GG[image_status_result_manual = OK]
+    
+    FF --> HH[Incrementar contador de reintentos]
+    HH --> II{¿Reintentos < máximo?}
+    II -->|Sí| JJ[image_retry = true]
+    II -->|No| KK[image_status_stage = REJECTED]
+    
+    JJ --> S
+    GG --> LL[image_status_stage = MANUAL_PROCESSED]
+    
+    %% Envío a SGC
+    X --> MM[Preparación para SGC]
+    LL --> MM
+    
+    MM --> NN[Validación final de datos]
+    NN --> OO{¿Datos completos?}
+    OO -->|No| PP[Error: Datos incompletos]
+    OO -->|Sí| QQ[Envío a SGC]
+    
+    QQ --> RR{¿SGC acepta lectura?}
+    RR -->|No| SS[image_status_result_sgc = NOK]
+    RR -->|Sí| TT[image_status_result_sgc = OK]
+    
+    SS --> UU[Notificación de error SGC]
+    TT --> VV[image_status_stage = SENT_TO_SGC]
+    
+    %% Actualización de perfil
+    VV --> WW[Actualización de prf_last_reading]
+    WW --> XX[Actualización de prf_last_reading_date]
+    
+    %% Auditoría y notificaciones
+    B --> YY[IMAGE_HIST: Creación]
+    DD --> ZZ[IMAGE_HIST: Validación manual]
+    VV --> AAA[IMAGE_HIST: Envío SGC]
+    XX --> BBB[PROFILE_HIST: Actualización]
+    
+    %% Notificaciones
+    S --> CCC[Notificación: Validación manual requerida]
+    W --> DDD[Notificación: Supervisión requerida]
+    KK --> EEE[Notificación: Lectura rechazada]
+    SS --> FFF[Notificación: Error SGC]
+    
+    %% Estados finales
+    style A fill:#e1f5fe
+    style VV fill:#c8e6c9
+    style KK fill:#ffcdd2
+    style E fill:#ffcdd2
+    style PP fill:#ffcdd2
+    style W fill:#f3e5f5
+    style S fill:#fff3e0
+]]></ac:plain-text-body></ac:structured-macro><h4>Explicaci&oacute;n del Proceso de Validaci&oacute;n de Lecturas</h4><p>El proceso de validaci&oacute;n de lecturas en YoleoGas es el flujo m&aacute;s cr&iacute;tico del sistema, transformando im&aacute;genes capturadas en lecturas v&aacute;lidas a trav&eacute;s de m&uacute;ltiples etapas de procesamiento y validaci&oacute;n:</p><ol start="1"><li><p><strong>Captura y Validaci&oacute;n Inicial</strong></p></li></ol><ul><li><p>El t&eacute;cnico captura una imagen del contador usando la aplicaci&oacute;n m&oacute;vil</p></li><li><p>Se crea un registro <code>IMAGE</code> con estado inicial y metadatos del dispositivo</p></li><li><p>Se valida la integridad de la imagen y su asociaci&oacute;n con un perfil v&aacute;lido</p></li></ul><ol start="2"><li><p><strong>Procesamiento Mobile</strong></p></li></ol><ul><li><p>La aplicaci&oacute;n m&oacute;vil realiza un procesamiento inicial de la imagen</p></li><li><p>Se extrae una lectura preliminar (<code>image_meter_reading_value_mobile</code>)</p></li><li><p>Se calcula un nivel de confianza para cada d&iacute;gito (<code>image_meter_reading_confidence_mobile_digit*</code>)</p></li><li><p>Si la confianza es baja, se marca para procesamiento adicional en servidor</p></li></ul><ol start="3"><li><p><strong>Procesamiento OCR Server</strong></p></li></ol><ul><li><p>El servidor ejecuta algoritmos OCR avanzados sobre la imagen</p></li><li><p>Se extrae la lectura del servidor (<code>image_meter_reading_value_server</code>)</p></li><li><p>Se calculan niveles de confianza detallados por d&iacute;gito (<code>image_meter_reading_confidence_server_digit*</code>)</p></li><li><p>Se valida la coherencia con el perfil del contador y lecturas anteriores</p></li></ul><ol start="4"><li><p><strong>Validaci&oacute;n de Reglas de Negocio</strong></p></li></ol><ul><li><p>Se aplican reglas espec&iacute;ficas del distribuidor (<code>distributor_model_rules</code>)</p></li><li><p>Se verifican rangos v&aacute;lidos y patrones de consumo</p></li><li><p>Se detectan anomal&iacute;as o lecturas sospechosas</p></li><li><p>Se determina si la lectura requiere supervisi&oacute;n manual</p></li></ul><ol start="5"><li><p><strong>Procesamiento Manual</strong></p></li></ol><ul><li><p>Las lecturas con baja confianza o que fallan validaciones autom&aacute;ticas pasan a validaci&oacute;n manual</p></li><li><p>Se asignan a operadores regulares o supervisores seg&uacute;n <code>image_manual_supervision</code></p></li><li><p>Los operadores pueden aceptar, corregir o rechazar la lectura</p></li><li><p>Se registra la decisi&oacute;n en <code>image_meter_reading_value_manual</code></p></li></ul><ol start="6"><li><p><strong>Gesti&oacute;n de Reintentos</strong></p></li></ol><ul><li><p>Las lecturas rechazadas pueden reintentarse hasta un m&aacute;ximo configurado</p></li><li><p>Se incrementa <code>image_retries_count</code> en cada intento</p></li><li><p>Despu&eacute;s del m&aacute;ximo de reintentos, la lectura se marca como definitivamente rechazada</p></li></ul><ol start="7"><li><p><strong>Env&iacute;o a SGC (Sistema de Gesti&oacute;n Comercial)</strong></p></li></ol><ul><li><p>Las lecturas validadas se preparan para env&iacute;o al sistema comercial</p></li><li><p>Se realiza una validaci&oacute;n final de completitud de datos</p></li><li><p>Se env&iacute;a al SGC y se registra la respuesta</p></li><li><p>En caso de &eacute;xito, se actualiza el perfil con la nueva lectura</p></li></ul><ol start="8"><li><p><strong>Auditor&iacute;a y Trazabilidad</strong></p></li></ol><ul><li><p>Cada cambio de estado se registra en <code>IMAGE_HIST</code></p></li><li><p>Las actualizaciones de perfil se registran en <code>PROFILE_HIST</code></p></li><li><p>Se mantiene un registro completo de la cadena de procesamiento</p></li></ul><p><strong>Estados Principales del Proceso:</strong></p><ul><li><p><strong>MOBILE_PROCESSED</strong>: Procesamiento m&oacute;vil completado</p></li><li><p><strong>PENDING_MANUAL_PROCESSING</strong>: Requiere validaci&oacute;n manual</p></li><li><p><strong>MANUAL_PROCESSED</strong>: Validaci&oacute;n manual completada</p></li><li><p><strong>PROCESSED_OK</strong>: Procesamiento autom&aacute;tico exitoso</p></li><li><p><strong>SENT_TO_SGC</strong>: Enviado al sistema comercial</p></li><li><p><strong>REJECTED</strong>: Lectura rechazada definitivamente</p></li></ul><p><strong>Caracter&iacute;sticas Clave del Proceso:</strong></p><ul><li><p><strong>Procesamiento Multi-etapa</strong>: Mobile &rarr; OCR &rarr; Manual &rarr; SGC</p></li><li><p><strong>Validaci&oacute;n Jer&aacute;rquica</strong>: Operadores y supervisores con diferentes permisos</p></li><li><p><strong>Gesti&oacute;n de Confianza</strong>: Niveles de confianza por d&iacute;gito para decisiones autom&aacute;ticas</p></li><li><p><strong>Recuperaci&oacute;n de Errores</strong>: Sistema de reintentos y escalado a supervisi&oacute;n</p></li><li><p><strong>Trazabilidad Completa</strong>: Auditor&iacute;a de cada paso del proceso</p></li><li><p><strong>Notificaciones Inteligentes</strong>: Alertas contextuales seg&uacute;n el estado</p></li><li><p><strong>Multi-tenancy</strong>: Reglas espec&iacute;ficas por distribuidor aplicadas autom&aacute;ticamente</p></li></ul><p>Este proceso asegura que las lecturas de contadores mantengan la m&aacute;xima precisi&oacute;n y confiabilidad, con m&uacute;ltiples capas de validaci&oacute;n y la flexibilidad para manejar casos excepcionales a trav&eacute;s de intervenci&oacute;n humana cuando sea necesario.</p><hr /><h2>Inventario de Entidades</h2><h3>Resumen Cuantitativo</h3><table data-table-width="760" data-layout="default" ac:local-id="e8fe5b07-99ba-433e-a4e1-e119067d58d3"><tbody><tr><th><p>Categor&iacute;a</p></th><th><p>Cantidad</p></th><th><p>Entidades</p></th></tr><tr><td><p><strong>Entidades Principales</strong></p></td><td><p>5</p></td><td><p>image, profile, model, distributor, operator</p></td></tr><tr><td><p><strong>Entidades de Configuraci&oacute;n</strong></p></td><td><p>6</p></td><td><p>configuration, distributor_configuration, times_configuration, distributor_cups, distributor_range, global_configurations</p></td></tr><tr><td><p><strong>Entidades de Gesti&oacute;n</strong></p></td><td><p>8</p></td><td><p>rejection_reason, notification, log, help, question, review, report, reportfield</p></td></tr><tr><td><p><strong>Entidades Hist&oacute;ricas</strong></p></td><td><p>4</p></td><td><p>image_hist, profile_hist, notification_hist, wmb_hist</p></td></tr><tr><td><p><strong>Entidades de Soporte</strong></p></td><td><p>20</p></td><td><p>device, marketer, portaluser, bacckofficereport, excessreport, etc.</p></td></tr><tr><td><p><strong>TOTAL</strong></p></td><td><p><strong>43</strong></p></td><td><p /></td></tr></tbody></table><h3>Clasificaci&oacute;n Detallada por Funci&oacute;n</h3><h4><strong>Procesamiento Core (5 entidades)</strong></h4><ul><li><p><code>image</code> - Im&aacute;genes de contadores y su procesamiento</p></li><li><p><code>profile</code> - Perfiles de contadores de gas</p></li><li><p><code>model</code> - Modelos OCR para procesamiento</p></li><li><p><code>distributor</code> - Empresas distribuidoras (multi-tenancy)</p></li><li><p><code>operator</code> - T&eacute;cnicos de campo</p></li></ul><h4><strong>Configuraci&oacute;n del Sistema (6 entidades)</strong></h4><ul><li><p><code>configuration</code> - Configuraci&oacute;n global del sistema</p></li><li><p><code>distributor_configuration</code> - Configuraci&oacute;n espec&iacute;fica por distribuidor</p></li><li><p><code>times_configuration</code> - Configuraci&oacute;n de tiempos de procesamiento</p></li><li><p><code>distributor_cups</code> - Gesti&oacute;n de c&oacute;digos CUPS por distribuidor</p></li><li><p><code>distributor_range</code> - Rangos de valores por distribuidor</p></li><li><p><code>global_configurations</code> - Configuraciones globales adicionales</p></li></ul><h4><strong>Gesti&oacute;n y Control (8 entidades)</strong></h4><ul><li><p><code>rejection_reason</code> - Cat&aacute;logo de motivos de rechazo</p></li><li><p><code>notification</code> - Sistema de notificaciones</p></li><li><p><code>log</code> - Registro de auditor&iacute;a y eventos</p></li><li><p><code>help</code> - Sistema de ayuda contextual</p></li><li><p><code>question</code> - Preguntas frecuentes y soporte</p></li><li><p><code>review</code> - Revisiones y validaciones</p></li><li><p><code>report</code> - Definici&oacute;n de reportes</p></li><li><p><code>reportfield</code> - Campos de reportes personalizables</p></li></ul><h4><strong>Auditor&iacute;a e Historial (4 entidades)</strong></h4><ul><li><p><code>image_hist</code> - Historial de cambios en im&aacute;genes</p></li><li><p><code>profile_hist</code> - Historial de cambios en perfiles</p></li><li><p><code>notification_hist</code> - Historial de notificaciones</p></li><li><p><code>wmb_hist</code> - Historial de procesos WMB</p></li></ul><h4><strong>Soporte y Extensiones (20 entidades)</strong></h4><ul><li><p><code>device</code> - Dispositivos m&oacute;viles registrados</p></li><li><p><code>marketer</code> - Empresas comercializadoras</p></li><li><p><code>portaluser</code> - Usuarios del portal web</p></li><li><p><code>bacckofficereport</code> - Reportes de backoffice</p></li><li><p><code>excessreport</code> - Reportes de excesos</p></li><li><p><code>gnfcounters</code> - Contadores GNF</p></li><li><p><code>model_version</code> - Versiones de modelos OCR</p></li><li><p><code>modelhermes</code> - Modelos Hermes espec&iacute;ficos</p></li><li><p><code>nextimagenotification</code> - Notificaciones de pr&oacute;ximas im&aacute;genes</p></li><li><p><code>nextimagesender</code> - Gesti&oacute;n de env&iacute;o de im&aacute;genes</p></li><li><p><code>profile_learned_ids</code> - IDs aprendidos por perfil</p></li><li><p><code>reindexer</code> - Procesos de reindexaci&oacute;n</p></li><li><p><code>report_configuration</code> - Configuraci&oacute;n de reportes</p></li><li><p><code>wmb</code> - Gesti&oacute;n WMB (Web Message Broker)</p></li><li><p><code>distributor_cups_loader</code> - Cargador de CUPS por distribuidor</p></li><li><p><code>distributor_cups_request</code> - Solicitudes de CUPS</p></li><li><p><code>distributor_message</code> - Mensajes por distribuidor</p></li><li><p><code>distributor_model_rules</code> - Reglas de modelo por distribuidor</p></li><li><p><code>distributor_nextimageloader</code> - Cargador de pr&oacute;ximas im&aacute;genes</p></li><li><p><code>distributor_nextimagesender</code> - Enviador de pr&oacute;ximas im&aacute;genes</p></li><li><p><code>distributor_notification_schedule</code> - Programaci&oacute;n de notificaciones</p></li></ul><h3>M&eacute;tricas de Complejidad</h3><h4><strong>Relaciones por Entidad</strong></h4><ul><li><p><strong>image</strong>: 6 relaciones (profile, distributor, operator, rejection_reason, image_hist, notification)</p></li><li><p><strong>profile</strong>: 5 relaciones (model, distributor, operator, image, profile_hist)</p></li><li><p><strong>distributor</strong>: 4 relaciones (profile, image, distributor_configuration, distributor_*)</p></li><li><p><strong>model</strong>: 2 relaciones (profile, model_version)</p></li><li><p><strong>operator</strong>: 2 relaciones (profile, image)</p></li></ul><h4><strong>Campos por Entidad Principal</strong></h4><ul><li><p><strong>image</strong>: 82 campos (alta complejidad - m&uacute;ltiples etapas de procesamiento)</p></li><li><p><strong>profile</strong>: 52 campos (complejidad media - configuraci&oacute;n completa)</p></li><li><p><strong>model</strong>: 41 campos (complejidad media - definici&oacute;n OCR detallada)</p></li><li><p><strong>distributor</strong>: 4 campos (baja complejidad - entidad maestra simple)</p></li><li><p><strong>operator</strong>: 5 campos (baja complejidad - informaci&oacute;n b&aacute;sica)</p></li></ul><h4><strong>&Iacute;ndices Recomendados para Performance</strong></h4><ac:structured-macro ac:name="code" ac:schema-version="1" ac:macro-id="34a73e5b-6da7-4627-8ec0-9d6e7ddd8b80"><ac:parameter ac:name="breakoutMode">wide</ac:parameter><ac:parameter ac:name="breakoutWidth">760</ac:parameter><ac:plain-text-body><![CDATA[-- Índices principales para consultas frecuentes
+CREATE INDEX IX_image_status_stage ON image(image_status_stage);
+CREATE INDEX IX_image_date_processed_mobile ON image(image_date_processed_mobile);
+CREATE INDEX IX_image_manual_supervision ON image(image_manual_supervision);
+CREATE INDEX IX_image_distributor ON image(dis_id);
+CREATE INDEX IX_profile_cups ON profile(prf_cups);
+CREATE INDEX IX_profile_creation_date ON profile(prf_creation_date);
+CREATE INDEX IX_profile_distributor ON profile(dis_id);
+]]></ac:plain-text-body></ac:structured-macro><h3>Consideraciones de Dise&ntilde;o</h3><h4><strong>Escalabilidad</strong></h4><ul><li><p>Uso de GUIDs para claves primarias (distribuci&oacute;n en m&uacute;ltiples servidores)</p></li><li><p>Particionamiento por distribuidor (dis_id) para multi-tenancy</p></li><li><p>Tablas hist&oacute;ricas separadas para mantener performance en tablas principales</p></li></ul><h4><strong>Integridad Referencial</strong></h4><ul><li><p>Relaciones opcionales (nullable FKs) para flexibilidad en el flujo de procesamiento</p></li><li><p>Soft deletes mediante campos de estado en lugar de eliminaci&oacute;n f&iacute;sica</p></li><li><p>Auditor&iacute;a completa mediante tablas *_hist</p></li></ul><h4><strong>Performance</strong></h4><ul><li><p>&Iacute;ndices optimizados para consultas de backoffice (estado, fecha, distribuidor)</p></li><li><p>Separaci&oacute;n de datos hist&oacute;ricos para reducir el tama&ntilde;o de tablas activas</p></li><li><p>Campos desnormalizados para evitar JOINs complejos en consultas frecuentes</p></li></ul><hr /><h2>Conclusiones</h2><p>El modelo de datos de YoleoGas est&aacute; dise&ntilde;ado para soportar un sistema empresarial complejo de gesti&oacute;n de lecturas de contadores de gas con las siguientes caracter&iacute;sticas clave:</p><ol start="1"><li><p><strong>Multi-tenancy</strong>: Soporte nativo para m&uacute;ltiples distribuidores</p></li><li><p><strong>Trazabilidad Completa</strong>: Auditor&iacute;a de todos los cambios y procesos</p></li><li><p><strong>Escalabilidad</strong>: Dise&ntilde;o preparado para millones de lecturas</p></li><li><p><strong>Flexibilidad</strong>: Configuraci&oacute;n granular por distribuidor y tipo de contador</p></li><li><p><strong>Integridad</strong>: Relaciones bien definidas con validaci&oacute;n de datos</p></li></ol><p>El sistema maneja eficientemente el flujo completo desde la captura m&oacute;vil hasta la integraci&oacute;n con sistemas comerciales, manteniendo la integridad de los datos y proporcionando la trazabilidad necesaria para un entorno empresarial regulado.</p>
+</body>
+</html>

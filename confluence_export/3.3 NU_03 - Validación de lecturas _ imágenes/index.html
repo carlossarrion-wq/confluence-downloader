@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.3 NU_03 - Validación de lecturas / imágenes</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #172B4D;
+            margin-top: 1.5em;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .metadata {
+            background: #f4f5f7;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="metadata">
+        <strong>Página:</strong> 3.3 NU_03 - Validación de lecturas / imágenes<br>
+        <strong>ID:</strong> 1384546328<br>
+        <strong>Espacio:</strong> Y<br>
+        <strong>Versión:</strong> 1<br>
+        <strong>Última modificación:</strong> 2025-09-25T16:55:43.054Z
+    </div>
+    <hr>
+    <p>Una vez dentro del portal y accediendo a la opci&oacute;n de 'Validaci&oacute;n de Lecturas' se muestra una de las lecturas que est&eacute; pendiente de validar.</p><img src="images/image-20250921-063038.png" alt="image-20250921-063038.png" style="max-width: 100%;" /><p>En esta pantalla podr&aacute;n visualizarse tanto las im&aacute;genes recibidas del m&oacute;vil que han sido rechazadas, as&iacute; como aquellas fotos que ya han pasado por el sistema alguna vez (bien manual o autom&aacute;ticamente) y al llegar a los sistemas Backend / Zeus, han sido rechazadas. En estas segundas se mostrar&aacute; el error que el sistema ha devuelto, y se permitir&aacute; al usuario de la aplicaci&oacute;n modificar la lectura. En caso que acabe modificando la lectura, se volver&iacute;a a encolar para enviarse al sistema backend.</p><p>Para una lectura se muestra:</p><ul><li><p>La imagen de la lectura realizada por el cliente.</p></li><li><p>CUPS identificador del punto de suministro</p></li><li><p>N&uacute;mero de serie del contador.</p></li><li><p>Lectura m&oacute;vil: lectura reconocida por el OCR en el dispositivo</p></li><li><p>Lectura OCR Servidor: lectura reconocida por el OCR en el servidor.</p></li><li><p>Lectura manual aquella que introduce el usuario.</p></li></ul><p>El bot&oacute;n de &ldquo;Enviar a Supervisi&oacute;n&rdquo; &uacute;nicamente aparecer&aacute; a usuarios con perfil validador.</p><h3>Validar</h3><p>Se muestra la informaci&oacute;n de la lectura reconocida tanto en el dispositivo como en el servidor de OCR. Se permite al usuario de una forma r&aacute;pida validar la lectura con el bot&oacute;n si es correcta y coincide con la imagen que se est&aacute; visualizando a la izquierda.</p><p>Tambi&eacute;n se muestra una opci&oacute;n de copiar el valor en el campo de lectura manual para facilitar su edici&oacute;n en caso necesario.</p><h3>Rechazar</h3><p>En caso que la lectura no sea identificable por el operario, puede rechazar la lectura sin tener que indicar la lectura reconocida con el bot&oacute;n de 'Rechazar Lectura'.</p><h3>Lectura facilitada</h3><p>En caso que la lectura viniera dada por el usuario final, se mostrar&aacute; como tal en el encabezado de la pantalla.</p><p>Una vez revisadas las lecturas y la imagen recibida, el usuario puede introducir manualmente la lectura que se tendr&aacute; en consideraci&oacute;n y confirmarla.</p><p>Al usuario final se le indicar&aacute; que la lectura ha sido validada correctamente.</p><h3>Saltar para Supervisi&oacute;n</h3><p>El operario tendr&aacute; una opci&oacute;n adicional que consistir&aacute; en &ldquo;Saltar para Supervisi&oacute;n&rdquo;. En este caso, la foto no estar&aacute; m&aacute;s disponible para los operarios y solamente la ver&aacute;n los usuarios con Rol Administrador. Cuando se les muestre a los usuarios administradores, se les destacar&aacute; que son unas im&aacute;genes que han sido Saltadas para Supervisi&oacute;n.</p><h3>Saltar lectura</h3><p>Esta opci&oacute;n permite saltar una lectura y visualizar la siguiente pendiente de revisi&oacute;n.</p>
+</body>
+</html>

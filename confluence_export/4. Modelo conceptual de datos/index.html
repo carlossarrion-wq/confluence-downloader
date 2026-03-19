@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4. Modelo conceptual de datos</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #172B4D;
+            margin-top: 1.5em;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .metadata {
+            background: #f4f5f7;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="metadata">
+        <strong>Página:</strong> 4. Modelo conceptual de datos<br>
+        <strong>ID:</strong> 1384546344<br>
+        <strong>Espacio:</strong> Y<br>
+        <strong>Versión:</strong> 1<br>
+        <strong>Última modificación:</strong> 2025-09-25T17:15:15.509Z
+    </div>
+    <hr>
+    <h2>4.1 Diagrama conceptual del modelo de datos</h2><img src="images/image-20250921-131034.png" alt="image-20250921-131034.png" style="max-width: 100%;" /><h2>4.2 Descripci&oacute;n de entidades</h2><h3>4.2.1 Entidades Principales</h3><h4><strong>IMAGE</strong> - Lecturas de Contadores</h4><p><strong>Prop&oacute;sito</strong>: Almacena las im&aacute;genes de contadores y su informaci&oacute;n de procesamiento a trav&eacute;s de todas las etapas.</p><p><strong>Campos Clave</strong>:</p><ul><li><p><code>image_id</code> (GUID): Identificador &uacute;nico de la imagen</p></li><li><p><code>prf_id</code> (GUID): Referencia al perfil del contador</p></li><li><p><code>image_container</code>, <code>image_blob</code>: Ubicaci&oacute;n de la imagen en Azure Blob Storage</p></li><li><p><code>image_status_stage</code>: Estado actual del procesamiento</p></li><li><p><code>image_meter_reading_value_*</code>: Valores de lectura en cada etapa</p></li><li><p><code>image_meter_reading_confidence_*</code>: Niveles de confianza OCR</p></li><li><p><code>image_manual_supervision</code>: Indica si requiere supervisi&oacute;n de administrador</p></li><li><p><code>dis_id</code>: Identificador del distribuidor (multi-tenancy)</p></li></ul><p><strong>Estados de Procesamiento</strong>:</p><ul><li><p><code>PENDING_MANUAL_PROCESSING</code>: Pendiente de validaci&oacute;n manual</p></li><li><p><code>PROCESSED_OK</code>: Procesado correctamente</p></li><li><p><code>PROCESSED_NOK</code>: Procesado con errores</p></li><li><p><code>SENT_TO_SGC</code>: Enviado al sistema comercial</p></li></ul><h4><strong>PROFILE</strong> - Perfiles de Contadores</h4><p><strong>Prop&oacute;sito</strong>: Configuraci&oacute;n y metadatos de cada contador de gas en el sistema.</p><p><strong>Campos Clave</strong>:</p><ul><li><p><code>prf_id</code> (GUID): Identificador &uacute;nico del perfil</p></li><li><p><code>prf_cups</code>: C&oacute;digo CUPS del punto de suministro</p></li><li><p><code>prf_name</code>: Nombre descriptivo del perfil</p></li><li><p><code>model_id</code>: Referencia al modelo OCR asociado</p></li><li><p><code>prf_last_reading</code>: &Uacute;ltima lectura v&aacute;lida</p></li><li><p><code>prf_meter_serial_value</code>: N&uacute;mero de serie del contador</p></li><li><p><code>prf_manual_supervision</code>: Requiere supervisi&oacute;n manual</p></li><li><p><code>prf_allow_notifications</code>: Configuraci&oacute;n de notificaciones</p></li><li><p><code>dis_id</code>: Distribuidor propietario</p></li></ul><h4><strong>DISTRIBUTOR</strong> - Distribuidores</h4><p><strong>Prop&oacute;sito</strong>: Gesti&oacute;n multi-tenant del sistema para diferentes empresas distribuidoras.</p><p><strong>Campos Clave</strong>:</p><ul><li><p><code>dis_id</code> (INT): Identificador &uacute;nico del distribuidor</p></li><li><p><code>dis_name</code>: Nombre de la empresa distribuidora</p></li><li><p><code>dis_active</code>: Estado activo/inactivo</p></li><li><p><code>dis_registration_date</code>: Fecha de registro en el sistema</p></li></ul><h4><strong>OPERATOR</strong> - Operadores de Campo</h4><p><strong>Prop&oacute;sito</strong>: Informaci&oacute;n de los t&eacute;cnicos que capturan las im&aacute;genes con dispositivos m&oacute;viles.</p><p><strong>Campos Clave</strong>:</p><ul><li><p><code>oper_id</code> (GUID): Identificador &uacute;nico del operador</p></li><li><p><code>oper_operId</code>: C&oacute;digo de identificaci&oacute;n del operador</p></li><li><p><code>oper_name</code>: Nombre del operador</p></li><li><p><code>oper_last_image_date</code>: Fecha de la &uacute;ltima imagen capturada</p></li></ul><h3>4.2.2 Entidades de Configuraci&oacute;n</h3><h4><strong>CONFIGURATION</strong> - Configuraci&oacute;n Global</h4><p>Par&aacute;metros de configuraci&oacute;n del sistema a nivel global.</p><h4><strong>DISTRIBUTOR_CONFIGURATION</strong> - Configuraci&oacute;n por Distribuidor</h4><p>Configuraciones espec&iacute;ficas para cada distribuidor.</p><h4><strong>TIMES_CONFIGURATION</strong> - Configuraci&oacute;n de Tiempos</h4><p>Par&aacute;metros de tiempo para procesamiento y notificaciones.</p><h3>4.2.3 Entidades de Gesti&oacute;n</h3><h4><strong>REJECTION_REASON</strong> - Motivos de Rechazo</h4><p>Cat&aacute;logo de motivos por los cuales una lectura puede ser rechazada.</p><h4><strong>NOTIFICATION</strong> - Notificaciones</h4><p>Sistema de notificaciones para operadores y administradores.</p><h4><strong>LOG</strong> - Auditor&iacute;a</h4><p>Registro de eventos y cambios en el sistema para trazabilidad.</p><h3>4.2.4 Entidades Hist&oacute;ricas</h3><h4><strong>IMAGE_HIST</strong> - Historial de Im&aacute;genes</h4><p>Registro hist&oacute;rico de cambios en las im&aacute;genes procesadas.</p><h4><strong>PROFILE_HIST</strong> - Historial de Perfiles</h4><p>Registro hist&oacute;rico de cambios en los perfiles de contadores.</p><h4><strong>NOTIFICATION_HIST</strong> - Historial de Notificaciones</h4><p>Registro hist&oacute;rico de notificaciones enviadas.</p>
+</body>
+</html>
